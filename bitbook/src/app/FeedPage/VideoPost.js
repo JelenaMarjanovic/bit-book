@@ -3,7 +3,7 @@ import React from 'react';
 const VideoPost = () => {
     return (
         <div className="card">
-            <video class="responsive-video" controls>
+            <video className="responsive-video" controls>
                 <source src="movie.mp4" type="video/mp4" />
             </video>
             <div className="card-content light-blue accent-3 white-text">
