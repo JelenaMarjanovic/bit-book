@@ -5,6 +5,7 @@ import { Main } from './Main'
 import { Footer } from './common/Footer'
 
 import './App.css';
+import { FeedPage } from './FeedPage/FeedPage';
 
 class App extends Component {
   render() {
