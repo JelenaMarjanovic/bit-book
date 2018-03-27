@@ -8,7 +8,6 @@
 /shared
   constants
   utils
-
-  App
-  Main
+App
+Main
 </pre>
