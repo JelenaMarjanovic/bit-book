@@ -10,13 +10,11 @@ class FeedPage extends Component {
 
     render() {
         return (
-            <Fragment>
-                <div className="container">
-                    <ImagePost />
-                    <TextPost />
-                    <VideoPost />
-                </div>
-            </Fragment>
+            <div className="container">
+                <ImagePost />
+                <TextPost />
+                <VideoPost />
+            </div>
         );
     }
 }
