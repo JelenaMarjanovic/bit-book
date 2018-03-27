@@ -1,6 +1,6 @@
 import React from 'react';
 
-const ImagePost = () => {
+const ImagePostComp = () => {
     return (
         <div className="card">
             <div className="card-image waves-effect waves-block waves-light">
@@ -13,4 +13,4 @@ const ImagePost = () => {
     );
 };
 
-export { ImagePost };
+export { ImagePostComp };

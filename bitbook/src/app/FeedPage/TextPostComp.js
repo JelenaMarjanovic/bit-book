@@ -1,6 +1,6 @@
 import React from 'react';
 
-const TextPost = () => {
+const TextPostComp = () => {
     return (
         <div className="card">
             <div className="card-content center">
@@ -15,4 +15,4 @@ const TextPost = () => {
     );
 };
 
-export { TextPost };
+export { TextPostComp };

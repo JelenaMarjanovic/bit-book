@@ -1,6 +1,6 @@
 import React from 'react';
 
-const VideoPost = () => {
+const VideoPostComp = () => {
     return (
         <div className="card">
             <video className="responsive-video" controls>
@@ -13,4 +13,4 @@ const VideoPost = () => {
     );
 };
 
-export { VideoPost };
+export { VideoPostComp };
