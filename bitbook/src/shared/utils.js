@@ -2,6 +2,7 @@ import { myConst } from './constants';
 import { ImagePost } from '../models/ImagePost';
 import { TextPost } from '../models/TextPost';
 import { VideoPost } from '../models/VideoPost';
+import { Profile } from '../models/Profile';
 
 class Utils {
 
@@ -18,7 +19,7 @@ class Utils {
         })
     }
 
-    
+
 
     getPostTemplate = (type, content) => {
         if (type === "text") {
@@ -79,6 +80,10 @@ class Utils {
                 return true;
             }
         }
+    }
+
+    createSingleUser = (user) => {
+        return new Profile(user);
     }
 
     checkUrl = (type) => {
