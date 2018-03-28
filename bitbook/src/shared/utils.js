@@ -2,6 +2,7 @@ import { myConst } from './constants';
 import { ImagePost } from '../models/ImagePost';
 import { TextPost } from '../models/TextPost';
 import { VideoPost } from '../models/VideoPost';
+import { Profile } from '../models/Profile';
 
 class Utils {
 
@@ -83,13 +84,17 @@ class Utils {
     }
 
     showInvalidInput = (value, validate) => {
-        if(value === "") {
-                return false;
+        if (value === "") {
+            return false;
         } else {
-            if(!validate){
+            if (!validate) {
                 return true;
             }
         }
+    }
+
+    createSingleUser = (user) => {
+        return new Profile(user);
     }
 
 }
