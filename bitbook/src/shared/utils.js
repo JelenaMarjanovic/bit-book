@@ -79,14 +79,14 @@ class Utils {
     }
 
     isText = (text) => {
-        return (text.includes("www") || text.includes("http") || (text === "")) ? false : true;
+        return (text.includes("www") || text.includes("http")) ? false : true;
     }
 
     showInvalidInput = (value, validate) => {
-        if(value === "") {
-                return false;
+        if (value === "") {
+            return false;
         } else {
-            if(!validate){
+            if (!validate) {
                 return true;
             }
         }
