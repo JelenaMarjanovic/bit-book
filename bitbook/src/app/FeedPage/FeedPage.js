@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from 'react';
+import React, { Component } from 'react';
 
 import { postServices } from '../../services/postServices';
 import { utils } from '../../shared/utils';
@@ -17,7 +17,7 @@ class FeedPage extends Component {
     componentDidMount() {
 
         const prefix = 'Posts'
-        postServices.getPosts(prefix)
+        postServices.getRequest(prefix)
             .then(response => {
                 const data = utils.checkPostTypeAndCreate(response);
                 const postItems = data.map((post, i) => {
@@ -26,6 +26,8 @@ class FeedPage extends Component {
                 this.setState({ postItems: postItems })
             })
     }
+
+
 
     render() {
         return (

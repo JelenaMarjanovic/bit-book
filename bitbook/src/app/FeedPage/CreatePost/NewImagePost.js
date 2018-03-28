@@ -17,7 +17,7 @@ class NewImagePost extends React.Component {
         const isValid = utils.isImageUrl(value);
         const showError = utils.showInvalidInput(value, isValid)
 
-        this.setState({ url: value, isValidUrl: isValid, showError: showError })
+        this.setState({ imageUrl: value, isValidUrl: isValid, showError: showError })
     }
 
     isValid = () => (!this.state.isValidUrl) ? "disabled" : "";

@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-
+import { Link } from 'react-router-dom'
 import { ImagePostComp } from './ImagePostComp';
 import { VideoPostComp } from './VideoPostComp';
 import { TextPostComp } from './TextPostComp';
@@ -8,7 +8,7 @@ import { TextPostComp } from './TextPostComp';
 
 const PostItem = ({ postData }) => {
 
-    const { type } = postData
+    const { type, id } = postData
 
     const setItem = () => {
         if (type === "image") {
@@ -21,7 +21,7 @@ const PostItem = ({ postData }) => {
     }
 
     return (
-        setItem()
+        <Link to={`/feeds/${id}/${type}`} >{setItem()} </Link >
     );
 };
 
