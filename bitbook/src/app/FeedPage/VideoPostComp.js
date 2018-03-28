@@ -1,16 +1,29 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+import { utils }from '../../shared/utils'
 
-const VideoPostComp = () => {
+const VideoPostComp = ({ postData }) => {
+
+    const { type, commentsNum, videoUrl } = postData;
+    const filteredURl = utils.filterYouTube(videoUrl)
+
     return (
         <div className="card">
-            <video className="responsive-video" controls>
-                <source src="movie.mp4" type="video/mp4" />
-            </video>
-            <div className="card-content light-blue accent-3 white-text">
-                <p><span>Video post</span><span className="right">15 comments</span></p>
-            </div>
+        <div id="yt-frame">
+            <iframe title="video" width="100%" height="100%"
+                src={filteredURl} frameBorder="0"
+                allow="autoplay; encrypted-media" allowFullScreen></iframe>
         </div>
+        <div className="card-content light-blue accent-3 white-text">
+            <p><span>{type} post</span><span className="right">{commentsNum} comments</span></p>
+        </div>
+    </div >
     );
 };
 
 export { VideoPostComp };
+
+
+VideoPostComp.propTypes = {
+    postData: PropTypes.object
+}

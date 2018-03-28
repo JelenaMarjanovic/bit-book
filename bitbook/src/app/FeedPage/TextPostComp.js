@@ -1,18 +1,25 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
-const TextPostComp = () => {
+
+const TextPostComp = ({ postData }) => {
+
+    const { type, text, commentsNum } = postData;
+
     return (
         <div className="card">
             <div className="card-content center">
-                <p> Lorem ipsum dolor, sit amet consectetur adipisicing elit. Sint dignissimos veniam cumque odio dolorem quod alias, porro quos fugiat ullam. Qui laborum voluptate adipisci nesciunt ratione est magnam, minus impedit.
-                Est quam necessitatibus eaque provident libero odio molestias aliquid, ex assumenda nulla reiciendis quasi repellendus ut quia reprehenderit, quaerat illo, dolorum eos labore cum quidem earum obcaecati in! Necessitatibus, magnam.
-                Harum iusto, dolores aliquam vel qui fugiat odit, earum a illo natus esse ipsa est facere? Quasi, tempora doloremque? Consequatur nihil excepturi ipsam non ullam temporibus aliquid quibusdam, nesciunt soluta! </p>
+                <p> {text} </p>
             </div>
             <div className="card-content light-blue accent-3 white-text">
-                <p><span>Text post</span><span className="right">15 comments</span></p>
+                <p><span>{type} post</span><span className="right">{commentsNum} comments</span></p>
             </div>
         </div>
     );
 };
 
 export { TextPostComp };
+
+TextPostComp.propTypes = {
+    postData: PropTypes.object
+}

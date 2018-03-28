@@ -1,8 +1,8 @@
 import { Post } from './Post';
 
 class TextPost extends Post {
-    constructor({ text, id, dateCreated, userId, userDisplayName, type, commentsNum }) {
-        super(id, dateCreated, userId, userDisplayName, type, commentsNum);
+    constructor({ commentsNum, dateCreated, id, text, type, userDisplayName, userId }) {
+        super({ commentsNum, dateCreated, id, type, userDisplayName, userId });
         this.text = text;
     }
 }

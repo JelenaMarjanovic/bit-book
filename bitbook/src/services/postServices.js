@@ -1,18 +1,21 @@
 import axios from 'axios'
-import { myConstants } from '../shared/constants'
-
+import { myConst } from '../shared/constants'
+import { utils } from '../shared/utils';
 class PostServices {
 
     getPosts = (prefix) => {
-        const options = {
-            headers:{
-            "Content-Type": "application/json",
-            "Key": "bitbook",
-            "SessionId": "7A5D8FF8-B04D-4C8C-9812-8B44EB7E4C94"
-            }
-        }
-        return axios.get(myConstants.BASE_END_POINT + prefix, options)
-            .then(result => result)
+
+        return axios.get(myConst.BASE_END_POINT + prefix, myConst.options)
+            .then(result => result.data)
+    }
+
+    createPostRequest = (type, content) => {
+
+
+        const { url, template } = utils.getPostTemplate(type, content, myConst.options);
+        axios.post(url, template).then((res) => {
+            console.log(res);
+        })
     }
 }
 

@@ -1,8 +1,8 @@
 import { Post } from './Post';
 
 class ImagePost extends Post {
-    constructor({ imageUrl, id, dateCreated, userId, userDisplayName, type, commentsNum }) {
-        super(id, dateCreated, userId, userDisplayName, type, commentsNum);
+    constructor({ commentsNum, dateCreated, id, imageUrl, type, userDisplayName, userId }) {
+        super({ commentsNum, dateCreated, id, type, userDisplayName, userId });
         this.imageUrl = imageUrl;
     }
 }
