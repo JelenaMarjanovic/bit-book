@@ -44,3 +44,12 @@ video.responsive-video {
     bottom: 0;
     right: 0;
 }
+
+.isValid {
+  display: none;
+}
+
+.isInvalid {
+  display: block;
+  color: red;
+}

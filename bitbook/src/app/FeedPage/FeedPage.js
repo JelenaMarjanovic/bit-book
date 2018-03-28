@@ -1,7 +1,9 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
+
 import { postServices } from '../../services/postServices';
-// import { myConst } from '../../shared/constants';
 import { utils } from '../../shared/utils';
+
+import { CreatePost } from './CreatePost/CreatePost'
 import { PostItem } from './PostItem';
 
 class FeedPage extends Component {
@@ -28,6 +30,7 @@ class FeedPage extends Component {
     render() {
         return (
             <div className="container">
+                <CreatePost />
                 {this.state.postItems}
             </div>
         );

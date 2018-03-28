@@ -57,7 +57,39 @@ class Utils {
     }
 
     filterYouTube = (url) => {
-       return url.replace("watch?v=", "embed/");
+        return url.replace("watch?v=", "embed/");
+    }
+
+    isImageUrl = (rawUrl) => {
+        const p = /\.(jpeg|jpg|gif|png)$/;
+        const url = rawUrl.trim();
+        if (url.match(p)) {
+            return true;
+        }
+        return false;
+    }
+
+    isYouTubeURL = (rawUrl) => {
+        const p = /^(?:https?:\/\/)?(?:m\.|www\.)?(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=|watch\?.+&v=))((\w|-){11})(\?\S*)?$/;
+        const url = rawUrl.trim();
+        if (url.match(p)) {
+            return true;
+        }
+        return false;
+    }
+
+    isText = (text) => {
+        return (text.includes("www") || text.includes("http") || (text === "")) ? false : true;
+    }
+
+    showInvalidInput = (value, validate) => {
+        if(value === "") {
+                return false;
+        } else {
+            if(!validate){
+                return true;
+            }
+        }
     }
 
 }

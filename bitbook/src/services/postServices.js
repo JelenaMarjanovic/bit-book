@@ -1,6 +1,7 @@
 import axios from 'axios'
 import { myConst } from '../shared/constants'
 import { utils } from '../shared/utils';
+
 class PostServices {
 
     getPosts = (prefix) => {
@@ -11,9 +12,8 @@ class PostServices {
 
     createPostRequest = (type, content) => {
 
-
-        const { url, template } = utils.getPostTemplate(type, content, myConst.options);
-        axios.post(url, template).then((res) => {
+        const { url, template } = utils.getPostTemplate(type, content);
+        axios.post(url, template, myConst.options).then((res) => {
             console.log(res);
         })
     }
