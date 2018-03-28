@@ -17,7 +17,7 @@ class NewTextPost extends React.Component {
         const isValid = utils.isText(value);
         const showError = utils.showInvalidInput(value, isValid)
 
-        this.setState({ url: value, isValidUrl: isValid, showError: showError })
+        this.setState({ text: value, isValidText: isValid, showError: showError })
     }
 
     createPost = async () => {

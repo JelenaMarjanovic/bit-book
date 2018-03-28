@@ -7,6 +7,11 @@ class Comment {
         this.authorName = authorName;
         this.authorId = authorId;
     }
+
+    getDate = () => {
+        const date = this.dateCreated;
+        return `created at: ${date.getDate()}.${date.getMonth() - 1}.${date.getFullYear()} ${date.getHours()}:${date.getMinutes()}h`
+    }
 }
 
 export { Comment };
