@@ -1,4 +1,6 @@
 import React from 'react';
+import { utils } from '../../../shared/utils'
+import { postServices } from '../../../services/postServices'
 
 class NewVideoPost extends React.Component {
     constructor(props) {
@@ -6,26 +8,27 @@ class NewVideoPost extends React.Component {
         this.state = {
             url: "",
             isValidUrl: false,
+            showError: false,
         }
     }
 
     onChangeHandler = (e) => {
         const { value } = e.target
-        const isValid = this.isYouTubeURL(value);
+        const isValid = utils.isYouTubeURL(value);
+        const showError = utils.showInvalidInput(value, isValid)
 
-        this.setState({ url: value, isValidUrl: isValid })
+        this.setState({ url: value, isValidUrl: isValid, showError: showError })
     }
+
+    createPost = async () => {
+        await postServices.createPostRequest("video", this.state.url)
+        window.location.reload()
+    }
+
+
 
     isValid = () => (!this.state.isValidUrl) ? "disabled" : "";
-
-    isYouTubeURL = (rawUrl) => {
-        const p = /^(?:https?:\/\/)?(?:m\.|www\.)?(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=|watch\?.+&v=))((\w|-){11})(\?\S*)?$/;
-        const url = rawUrl.trim();
-        if (url.match(p)) {
-            return true;
-        }
-        return false;
-    }
+    showError = () => (this.state.showError) ? "isInvalid" : "isValid";
 
     render() {
         return (
@@ -38,11 +41,12 @@ class NewVideoPost extends React.Component {
                                 <textarea onChange={this.onChangeHandler} id="videopost" className="materialize-textarea"></textarea>
                                 <label htmlFor="videopost">YouTube video link</label>
                             </div>
+                                <p className={this.showError()}>invalid input</p>
                         </div>
                     </form>
                 </div>
                 <div className="modal-footer">
-                    <a className={`light-blue accent-3 btn ${this.isValid()}`}>Create Post</a>
+                    <a onClick={this.createPost} className={`light-blue accent-3 btn ${this.isValid()}`}>Create Post</a>
                 </div>
             </div>
         );

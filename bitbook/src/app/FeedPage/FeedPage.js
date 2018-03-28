@@ -1,22 +1,38 @@
 import React, { Component, Fragment } from 'react';
 
-import { ImagePost } from './ImagePost';
-import { TextPost } from './TextPost';
-import { VideoPost } from './VideoPost';
+import { postServices } from '../../services/postServices';
+import { utils } from '../../shared/utils';
+
 import { CreatePost } from './CreatePost/CreatePost'
+import { PostItem } from './PostItem';
 
 class FeedPage extends Component {
+    constructor() {
+        super()
+        this.state = {
+            postItems: ""
+        }
+    }
+
+    componentDidMount() {
+
+        const prefix = 'Posts'
+        postServices.getPosts(prefix)
+            .then(response => {
+                const data = utils.checkPostTypeAndCreate(response);
+                const postItems = data.map((post, i) => {
+                    return <PostItem key={i} postData={post} />
+                })
+                this.setState({ postItems: postItems })
+            })
+    }
 
     render() {
         return (
-            <Fragment>
-                <div className="container">
-                    <ImagePost />
-                    <TextPost />
-                    <VideoPost />
-                    <CreatePost />
-                </div>
-            </Fragment>
+            <div className="container">
+                <CreatePost />
+                {this.state.postItems}
+            </div>
         );
     }
 }

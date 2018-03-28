@@ -1,4 +1,6 @@
 import React from 'react';
+import { utils } from '../../../shared/utils'
+import { postServices } from '../../../services/postServices'
 
 class NewImagePost extends React.Component {
     constructor(props) {
@@ -6,26 +8,25 @@ class NewImagePost extends React.Component {
         this.state = {
             imageUrl: "",
             isValidUrl: false,
+            showError: false
         }
     }
 
     onChangeHandler = (e) => {
         const { value } = e.target
-        const isValid = this.isImageUrl(value);
+        const isValid = utils.isImageUrl(value);
+        const showError = utils.showInvalidInput(value, isValid)
 
-        this.setState({ imageUrl: value, isValidUrl: isValid })
-    }
-
-    isImageUrl = (rawUrl) => {
-        const p = /\.(jpeg|jpg|gif|png)$/;
-        const url = rawUrl.trim();
-        if (url.match(p)) {
-            return true;
-        }
-        return false;
+        this.setState({ url: value, isValidUrl: isValid, showError: showError })
     }
 
     isValid = () => (!this.state.isValidUrl) ? "disabled" : "";
+    showError = () => (this.state.showError) ? "isInvalid" : "isValid";
+
+    createPost = async () => {
+        await postServices.createPostRequest("image", this.state.imageUrl)
+        window.location.reload()
+    }
 
     render() {
         return (
@@ -38,15 +39,16 @@ class NewImagePost extends React.Component {
                                 <textarea onChange={this.onChangeHandler} id="imagepost" className="materialize-textarea"></textarea>
                                 <label htmlFor="imagepost">Image url</label>
                             </div>
+                            <p className={this.showError()}>invalid input</p>
                         </div>
                     </form>
                 </div>
                 <div className="modal-footer">
-                    <a className={`light-blue accent-3 btn ${this.isValid()}`}>Create Post</a>
+                    <a onClick={this.createPost} className={`light-blue accent-3 btn ${this.isValid()}`}>Create Post</a>
                 </div>
             </div>
         );
     }
 };
 
-export { NewImagePost };
+export {NewImagePost};

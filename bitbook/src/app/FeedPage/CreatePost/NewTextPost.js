@@ -1,26 +1,32 @@
 import React from 'react';
+import { utils } from '../../../shared/utils'
+import { postServices } from '../../../services/postServices'
 
 class NewTextPost extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
             text: "",
-            isValidText: false
+            isValidText: false,
+            showError: false
         }
     }
 
     onChangeHandler = (e) => {
         const { value } = e.target
-        const isValid = this.isText(value);
+        const isValid = utils.isText(value);
+        const showError = utils.showInvalidInput(value, isValid)
 
-        this.setState({ text: value, isValidText: isValid })
+        this.setState({ url: value, isValidUrl: isValid, showError: showError })
     }
 
-    isText = (text) => {
-        return (text.includes("www") || text.includes("http") || (text === "")) ? false : true;
+    createPost = async () => {
+        await postServices.createPostRequest("text", this.state.text)
+        window.location.reload()
     }
 
     isValid = () => (!this.state.isValidText) ? "disabled" : "";
+    showError = () => (this.state.showError) ? "isInvalid" : "isValid";
 
     render() {
         return (
@@ -33,15 +39,16 @@ class NewTextPost extends React.Component {
                                 <textarea onChange={this.onChangeHandler} id="textpost" className="materialize-textarea"></textarea>
                                 <label htmlFor="textpost">Post content</label>
                             </div>
+                            <p className={this.showError()}>invalid input</p>
                         </div>
                     </form>
                 </div>
                 <div className="modal-footer">
-                    <a className={`light-blue accent-3 btn ${this.isValid()}`}>Create Post</a>
+                    <a onClick={this.createPost} className={`light-blue accent-3 btn ${this.isValid()}`}>Create Post</a>
                 </div>
             </div>
         );
     }
 };
 
-export { NewTextPost };
+export {NewTextPost};
