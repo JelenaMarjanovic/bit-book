@@ -53,3 +53,18 @@ video.responsive-video {
   display: block;
   color: red;
 }
+
+.profile {
+  margin-top: 20px;
+}
+
+.profile-details {
+  padding: 7px;
+  border-radius: 15px;
+}
+
+.profile-avatar {
+  display: block;
+  margin: 0 auto;
+  max-width: 250px;
+}

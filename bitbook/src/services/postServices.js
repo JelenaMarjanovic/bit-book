@@ -4,7 +4,7 @@ import { utils } from '../shared/utils';
 
 class PostServices {
 
-    getPosts = (prefix) => {
+    getRequest = (prefix) => {
 
         return axios.get(myConst.BASE_END_POINT + prefix, myConst.options)
             .then(result => result.data)

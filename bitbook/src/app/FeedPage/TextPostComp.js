@@ -4,10 +4,10 @@ import PropTypes from 'prop-types';
 
 const TextPostComp = ({ postData }) => {
 
-    const { type, text, commentsNum } = postData;
+    const { id, type, text, commentsNum } = postData;
 
     return (
-        <div className="card">
+        <div className="card" id={id}>
             <div className="card-content center">
                 <p> {text} </p>
             </div>

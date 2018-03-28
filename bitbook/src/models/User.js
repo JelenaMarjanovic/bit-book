@@ -1,6 +1,6 @@
 class User {
-    constructor({ id, name, aboutShort, lastPostDate, avatarUrl }) {
-        this.userId = id;
+    constructor({ userId, name, aboutShort, lastPostDate, avatarUrl }) {
+        this.userId = userId;
         this.name = name;
         this.aboutShort = aboutShort;
         this.lastPostDate = new Date(lastPostDate);

@@ -2,34 +2,24 @@ import { myConst } from './constants';
 import { ImagePost } from '../models/ImagePost';
 import { TextPost } from '../models/TextPost';
 import { VideoPost } from '../models/VideoPost';
+import { Profile } from '../models/Profile';
 
 class Utils {
 
     checkPostTypeAndCreate = (data) => {
-
         return data.map((post) => {
             if (post.type === myConst.typeImage) {
-                return this.createImagePosts(post)
+                return new ImagePost(post)
             } else if (post.type === myConst.typeText) {
-                return this.createTextPosts(post)
+                return new TextPost(post)
             } else if (post.type === myConst.typeVideo) {
-                return this.createVideoPosts(post)
+                return new VideoPost(post)
             }
             return true
         })
     }
 
-    createImagePosts = (post) => {
-        return new ImagePost(post)
-    }
 
-    createTextPosts = (post) => {
-        return new TextPost(post)
-    }
-
-    createVideoPosts = (post) => {
-        return new VideoPost(post)
-    }
 
     getPostTemplate = (type, content) => {
         if (type === "text") {
@@ -89,6 +79,22 @@ class Utils {
             if (!validate) {
                 return true;
             }
+        }
+    }
+
+    createSingleUser = (user) => {
+        return new Profile(user);
+    }
+
+    checkUrl = (type) => {
+        if (type === "text") {
+            return "TextPosts/"
+        } else if (type === "image") {
+            return "ImagePosts/"
+        } else if (type === "video") {
+            return "VideoPosts/"
+        } else {
+            return "Invalid Post type"
         }
     }
 
