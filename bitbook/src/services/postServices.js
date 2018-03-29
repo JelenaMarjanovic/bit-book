@@ -10,11 +10,11 @@ class PostServices {
             .then(result => result.data)
     }
 
-    createPostRequest = (type, content) => {
-        const { url, template } = utils.getPostTemplate(type, content);
+    createPostRequest = (type, content, id) => {
 
+        const { url, template } = utils.getPostTemplate(type, content, id);
         return axios.post(url, template, myConst.options).then((res) => {
-            console.log(res);
+            return res
         })
     }
 }

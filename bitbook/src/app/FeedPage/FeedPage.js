@@ -20,7 +20,10 @@ class FeedPage extends Component {
 
     getFeedData = () => {
         const prefix = 'Posts'
+        return this.getPost(prefix);
+    }
 
+    getPost = (prefix) => {
         return postServices.getRequest(prefix)
             .then(response => {
                 const data = utils.checkPostTypeAndCreate(response);
@@ -30,8 +33,6 @@ class FeedPage extends Component {
                 this.setState({ postItems: postItems })
             })
     }
-
-
 
     render() {
         return (
