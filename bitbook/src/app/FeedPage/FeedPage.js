@@ -15,9 +15,13 @@ class FeedPage extends Component {
     }
 
     componentDidMount() {
+        this.getFeedData();
+    }
 
+    getFeedData = () => {
         const prefix = 'Posts'
-        postServices.getRequest(prefix)
+
+        return postServices.getRequest(prefix)
             .then(response => {
                 const data = utils.checkPostTypeAndCreate(response);
                 const postItems = data.map((post, i) => {
@@ -32,7 +36,7 @@ class FeedPage extends Component {
     render() {
         return (
             <div className="container">
-                <CreatePost />
+                <CreatePost reload={this.getFeedData} />
                 {this.state.postItems}
             </div>
         );
