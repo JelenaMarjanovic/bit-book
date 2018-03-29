@@ -51,4 +51,4 @@ class NewTextPost extends React.Component {
     }
 };
 
-export {NewTextPost};
+export { NewTextPost };

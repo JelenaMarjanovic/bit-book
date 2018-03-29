@@ -41,7 +41,7 @@ class NewVideoPost extends React.Component {
                                 <textarea onChange={this.onChangeHandler} id="videopost" className="materialize-textarea"></textarea>
                                 <label htmlFor="videopost">YouTube video link</label>
                             </div>
-                                <p className={this.showError()}>invalid input</p>
+                            <p className={this.showError()}>invalid input</p>
                         </div>
                     </form>
                 </div>

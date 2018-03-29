@@ -5,6 +5,7 @@ import { ImagePostComp } from '../ImagePostComp'
 import { VideoPostComp } from '../VideoPostComp'
 import { TextPostComp } from '../TextPostComp'
 import { CommentsList } from './CommentsList';
+import CreateComment from './CreateComment';
 
 class PostPageDetails extends Component {
     constructor(props) {
@@ -18,9 +19,14 @@ class PostPageDetails extends Component {
     }
 
     componentDidMount() {
+        this.getComments()
+    }
+
+    getComments = () => {
 
         const postUrl = utils.checkUrl(this.state.postType)
         const commentUrl = `/Comments?postId=${this.state.postId}`
+
         postServices.getRequest(postUrl + this.state.postId).then((res) => {
             const selectedPost = utils.checkPostTypeAndCreate([res])
             const renderItem = this.setItem(this.state.postType, selectedPost[0])
@@ -28,6 +34,7 @@ class PostPageDetails extends Component {
                 renderItem: renderItem
             })
         })
+
         postServices.getRequest(commentUrl).then((res) => {
             if (res.length === 0) {
                 this.setState({
@@ -40,7 +47,6 @@ class PostPageDetails extends Component {
                 })
             }
         })
-
     }
 
     setItem = (type, selectedPost) => {
@@ -59,6 +65,7 @@ class PostPageDetails extends Component {
         return (
             <div>
                 {this.state.renderItem}
+                <CreateComment postId={this.state.postId} getComments={this.getComments} />
                 {!this.state.comments ? <h2>No comments</h2> : <CommentsList comments={this.state.commentsList} />}
             </div>
         );

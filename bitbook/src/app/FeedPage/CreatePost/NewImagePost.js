@@ -51,4 +51,4 @@ class NewImagePost extends React.Component {
     }
 };
 
-export {NewImagePost};
+export { NewImagePost };
