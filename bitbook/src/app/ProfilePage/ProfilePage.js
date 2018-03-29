@@ -5,16 +5,29 @@ import { utils } from '../../shared/utils';
 
 class ProfilePage extends Component {
 
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
         this.state = {
             singleUser: null
         }
     }
 
     componentDidMount() {
+        const currentUrl = this.props.location.pathname;
+        console.log(currentUrl)
 
-        const prefix = 'profile';
+        if (currentUrl === '/profile/') {
+            const prefix = 'profile';
+            this.getProfile(prefix);
+        } else {
+            const prefix = `users/${currentUrl.slice(-3)}`;
+            this.getProfile(prefix);
+        }
+
+        
+    }
+
+    getProfile = (prefix) => {
         postServices.getRequest(prefix)
             .then(response => {
                 const singleUser = utils.createSingleUser(response);

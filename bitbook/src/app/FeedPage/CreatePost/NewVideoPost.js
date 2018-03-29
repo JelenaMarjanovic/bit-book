@@ -20,9 +20,17 @@ class NewVideoPost extends React.Component {
         this.setState({ url: value, isValidUrl: isValid, showError: showError })
     }
 
-    createPost = async () => {
-        await postServices.createPostRequest("video", this.state.url)
-        window.location.reload()
+    createPost = () => {
+        const { reload, modalInstance } = this.props;
+
+        postServices.createPostRequest("video", this.state.url)
+            .then(() => {
+                reload()
+            })
+            .then(() => {
+                modalInstance.close();
+                this.setState({ url: "" })
+            })
     }
 
 
@@ -38,10 +46,10 @@ class NewVideoPost extends React.Component {
                     <form>
                         <div className="row">
                             <div className="input-field col s12">
-                                <textarea onChange={this.onChangeHandler} id="videopost" className="materialize-textarea"></textarea>
+                                <textarea onChange={this.onChangeHandler} value={this.state.url} id="videopost" className="materialize-textarea"></textarea>
                                 <label htmlFor="videopost">YouTube video link</label>
                             </div>
-                            <p className={this.showError()}>invalid input</p>
+                            <p className={this.showError()}>Input must be valid youtube link</p>
                         </div>
                     </form>
                 </div>

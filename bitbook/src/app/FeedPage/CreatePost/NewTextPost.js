@@ -20,9 +20,16 @@ class NewTextPost extends React.Component {
         this.setState({ text: value, isValidText: isValid, showError: showError })
     }
 
-    createPost = async () => {
-        await postServices.createPostRequest("text", this.state.text)
-        window.location.reload()
+    createPost = () => {
+        const { reload, modalInstance } = this.props;
+        postServices.createPostRequest("text", this.state.text)
+            .then(() => {
+                reload()
+            })
+            .then(() => {
+                modalInstance.close();
+                this.setState({ text: "" })
+            })
     }
 
     isValid = () => (!this.state.isValidText) ? "disabled" : "";
@@ -31,21 +38,21 @@ class NewTextPost extends React.Component {
     render() {
         return (
             <div id="modalText" className="modal">
-                <div className="modal-content">
-                    <h4>New text post</h4>
-                    <form>
+                <form>
+                    <div className="modal-content">
+                        <h4>New text post</h4>
                         <div className="row">
                             <div className="input-field col s12">
-                                <textarea onChange={this.onChangeHandler} id="textpost" className="materialize-textarea"></textarea>
+                                <textarea onChange={this.onChangeHandler} value={this.state.text} id="textpost" className="materialize-textarea"></textarea>
                                 <label htmlFor="textpost">Post content</label>
                             </div>
-                            <p className={this.showError()}>invalid input</p>
+                            <p className={this.showError()}>Input must be text (not url)</p>
                         </div>
-                    </form>
-                </div>
-                <div className="modal-footer">
-                    <a onClick={this.createPost} className={`light-blue accent-3 btn ${this.isValid()}`}>Create Post</a>
-                </div>
+                    </div>
+                    <div className="modal-footer">
+                        <a onClick={this.createPost} className={`light-blue accent-3 btn ${this.isValid()}`}>Create Post</a>
+                    </div>
+                </form>
             </div>
         );
     }
