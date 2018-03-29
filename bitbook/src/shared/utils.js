@@ -111,7 +111,17 @@ class Utils {
         const nowDate = new Date();
         return (this.formatDate(date) === this.formatDate(nowDate))
     }
+    
+    userNameContains = (user, valueToFind) => {
+        const userFullName = user.name.toLowerCase();
+        const value = valueToFind.toLowerCase();
+        
+        return userFullName.includes(value);
+    }
 
+    searchUsersByName = (users, valueToSearch) => {
+        return users.filter(user => this.userNameContains(user, valueToSearch))
+    }
 }
 
 export const utils = new Utils();

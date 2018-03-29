@@ -3,13 +3,14 @@ import React, { Component } from 'react';
 import { postServices } from '../../services/postServices';
 import { utils } from '../../shared/utils';
 import { UserItem } from './UserItem'
-
+import { Search } from './Search'
 
 class PeoplePage extends Component {
     constructor() {
         super()
         this.state = {
-            usersList: []
+            usersList: [],
+            filteredUsers: [],
         }
     }
 
@@ -23,19 +24,25 @@ class PeoplePage extends Component {
         return postServices.getRequest(prefix)
             .then(response => {
                 const usersList = response.map(user => utils.createUser(user))
-                this.setState({ usersList: usersList })
+                this.setState({ usersList: usersList, filteredUsers: usersList })
             })
     }
 
     createUserItems = () => {
-        const { usersList } = this.state
+        return this.state.filteredUsers.map((user, i) => <UserItem user={user} key={i} />)
+    }
 
-        return usersList.map((user, i) => <UserItem user={user} key={i} />)
+    filterUsers = (valueToSearch) => {
+        const { usersList } = this.state
+        const matchedUsers = utils.searchUsersByName(usersList, valueToSearch);
+    
+        this.setState({ filteredUsers: matchedUsers });
     }
 
     render() {
         return (
             <div className="container">
+                <Search filterUsers = {this.filterUsers}/>
                 <ul className="collection">
                     {this.createUserItems()}
                 </ul>
