@@ -21,7 +21,7 @@ class Utils {
 
 
 
-    getPostTemplate = (type, content) => {
+    getPostTemplate = (type, content, id = "default") => {
         if (type === "text") {
             return {
                 template: {
@@ -42,6 +42,14 @@ class Utils {
                     "videoUrl": content
                 },
                 url: myConst.videoPostUrl
+            }
+        } else if (type === "comment") {
+            return {
+                template: {
+                    "body": content,
+                    "postId": id
+                },
+                url: myConst.commentsPostUrl
             }
         }
     }

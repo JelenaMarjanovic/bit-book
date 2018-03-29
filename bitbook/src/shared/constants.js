@@ -6,9 +6,11 @@ class Constants {
     typeImage = "image";
     typeText = "text";
     typeVideo = "video";
-    textPostUrl = this.BASE_END_POINT + '/TextPosts';
-    imagePostUrl = this.BASE_END_POINT + '/ImagePosts';
-    videoPostUrl = this.BASE_END_POINT + '/VideoPosts';
+    textPostUrl = this.BASE_END_POINT + 'TextPosts';
+    imagePostUrl = this.BASE_END_POINT + 'ImagePosts';
+    videoPostUrl = this.BASE_END_POINT + 'VideoPosts';
+    commentsPostUrl = this.BASE_END_POINT + 'Comments'
+
     options = {
         headers: {
             "Content-Type": "application/json",
