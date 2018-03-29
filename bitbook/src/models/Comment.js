@@ -1,3 +1,5 @@
+import { utils } from '../shared/utils'
+
 class Comment {
     constructor({ id, dateCreated, body, postId, authorName, authorId }) {
         this.id = id;
@@ -10,7 +12,7 @@ class Comment {
 
     getDate = () => {
         const date = this.dateCreated;
-        return `created at: ${date.getDate()}.${date.getMonth() - 1}.${date.getFullYear()} ${date.getHours()}:${date.getMinutes()}h`
+        return `created at: ${utils.formatDate(date)} ${utils.formatTime(date)}`
     }
 }
 

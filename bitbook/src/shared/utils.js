@@ -3,6 +3,7 @@ import { ImagePost } from '../models/ImagePost';
 import { TextPost } from '../models/TextPost';
 import { VideoPost } from '../models/VideoPost';
 import { Profile } from '../models/Profile';
+import { User } from '../models/User';
 
 class Utils {
 
@@ -86,6 +87,10 @@ class Utils {
         return new Profile(user);
     }
 
+    createUser = (user) => {
+        return new User(user);
+    }
+
     checkUrl = (type) => {
         if (type === "text") {
             return "TextPosts/"
@@ -96,6 +101,15 @@ class Utils {
         } else {
             return "Invalid Post type"
         }
+    }
+
+    formatDate = (date) => `${date.getDate()}.${date.getMonth() + 1}.${date.getFullYear()}.`
+
+    formatTime = (date) => `${date.getHours()}:${date.getMinutes()}`
+
+    isSameDay = (date) => {
+        const nowDate = new Date();
+        return (this.formatDate(date) === this.formatDate(nowDate))
     }
 
 }
