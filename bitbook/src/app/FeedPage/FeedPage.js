@@ -48,7 +48,7 @@ class FeedPage extends Component {
 
         return (
             <div className="container">
-                <CreatePost />
+                <CreatePost reload={this.getPost} />
                 {postItems}
             </div>
         );

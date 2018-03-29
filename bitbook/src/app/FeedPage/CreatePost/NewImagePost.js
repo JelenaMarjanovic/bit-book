@@ -23,9 +23,16 @@ class NewImagePost extends React.Component {
     isValid = () => (!this.state.isValidUrl) ? "disabled" : "";
     showError = () => (this.state.showError) ? "isInvalid" : "isValid";
 
-    createPost = async () => {
-        await postServices.createPostRequest("image", this.state.imageUrl)
-        window.location.reload()
+    createPost = () => {
+        const { reload, modalInstance } = this.props;
+        postServices.createPostRequest("image", this.state.imageUrl)
+            .then(() => {
+                reload()
+            })
+            .then(() => {
+                modalInstance.close();
+                this.setState({ imageUrl: "" })
+            })
     }
 
     render() {
@@ -36,10 +43,10 @@ class NewImagePost extends React.Component {
                     <form>
                         <div className="row">
                             <div className="input-field col s12">
-                                <textarea onChange={this.onChangeHandler} id="imagepost" className="materialize-textarea"></textarea>
+                                <textarea onChange={this.onChangeHandler} value={this.state.imageUrl} id="imagepost" className="materialize-textarea"></textarea>
                                 <label htmlFor="imagepost">Image url</label>
                             </div>
-                            <p className={this.showError()}>invalid input</p>
+                            <p className={this.showError()}>Input must be an image url</p>
                         </div>
                     </form>
                 </div>
