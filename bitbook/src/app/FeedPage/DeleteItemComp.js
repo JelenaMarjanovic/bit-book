@@ -5,12 +5,20 @@ class DeleteItemComp extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            postId: props.postId
+            postId: ""
         }
 
     }
     componentDidMount() {
+        this.setState({
+            postId: this.props.postId
+        })
+    }
 
+    componentWillReceiveProps(nextProps) {
+        this.setState({
+            postId: nextProps.postId
+        })
     }
 
     deletePost = (event) => {
