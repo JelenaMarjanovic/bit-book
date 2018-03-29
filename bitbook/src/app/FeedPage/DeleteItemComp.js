@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { postServices } from '../../services/postServices';
 
 class DeleteItemComp extends Component {
     constructor(props) {
@@ -14,13 +15,20 @@ class DeleteItemComp extends Component {
 
     deletePost = (event) => {
         event.preventDefault();
-        console.log(this.state.postId);
 
+        postServices.deletePostRequest(this.state.postId)
+            .then((res) => {
+                this.props.reload();
+            })
+            .catch((error) => {
+                console.log(error)
+                this.props.reload();
+            })
     }
 
     render() {
         return (
-            <span className="right" onClick={this.deletePost}><i class="material-icons">delete</i></span>
+            <span className="right" onClick={this.deletePost}><i className="material-icons">delete</i></span>
         );
     }
 }

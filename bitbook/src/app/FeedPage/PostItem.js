@@ -6,17 +6,18 @@ import { VideoPostComp } from './VideoPostComp';
 import { TextPostComp } from './TextPostComp';
 
 
-const PostItem = ({ postData, profileId }) => {
+const PostItem = ({ postData, profileId, reload }) => {
 
     const { type, id } = postData
 
+
     const setItem = () => {
         if (type === "image") {
-            return <ImagePostComp profileId={profileId} postData={postData} />
+            return <ImagePostComp profileId={profileId} postData={postData} reload={reload} />
         } else if (type === "video") {
-            return <VideoPostComp profileId={profileId} postData={postData} />
+            return <VideoPostComp profileId={profileId} postData={postData} reload={reload} />
         } else if (type === "text") {
-            return <TextPostComp profileId={profileId} postData={postData} />
+            return <TextPostComp profileId={profileId} postData={postData} reload={reload} />
         }
     }
 

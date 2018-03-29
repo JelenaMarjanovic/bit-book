@@ -10,34 +10,30 @@ class FeedPage extends Component {
     constructor() {
         super()
         this.state = {
-            postItems: "",
+            postItems: [],
             profileId: ""
         }
     }
 
     componentDidMount() {
-
-        const postPrefix = 'Posts'
-        this.getPost(postPrefix);
-
         const profilePrefix = 'profile'
-        this.getProfile(profilePrefix);
+        this.getProfile(profilePrefix)
+            .then(() => {
+                this.getPost();
+            })
     }
 
-    getPost = (prefix) => {
-        postServices.getRequest(prefix)
+    getPost = () => {
+        const postPrefix = 'Posts'
+        return postServices.getRequest(postPrefix)
             .then(response => {
                 const data = utils.checkPostTypeAndCreate(response);
-                const postItems = data.map((post, i) => {
-                    return <PostItem key={i} postData={post} profileId={this.state.profileId} />
-                })
-                this.setState({ postItems: postItems })
+                this.setState({ postItems: data })
             })
     }
 
     getProfile = (prefix) => {
-
-        postServices.getRequest(prefix)
+        return postServices.getRequest(prefix)
             .then((response) => {
                 this.setState({
                     profileId: response.userId
@@ -46,10 +42,14 @@ class FeedPage extends Component {
     }
 
     render() {
+        const postItems = this.state.postItems.map((post, i) => {
+            return <PostItem key={i} postData={post} profileId={this.state.profileId} reload={this.getPost} />
+        })
+
         return (
             <div className="container">
                 <CreatePost />
-                {this.state.postItems}
+                {postItems}
             </div>
         );
     }

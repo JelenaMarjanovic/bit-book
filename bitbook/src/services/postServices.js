@@ -17,6 +17,13 @@ class PostServices {
             return res
         })
     }
+
+    deletePostRequest = (id) => {
+        return axios.delete(myConst.deletePostRequestUrl + id, myConst.options)
+            .then((res) => {
+                return res
+            })
+    }
 }
 
 export const postServices = new PostServices();
