@@ -10,35 +10,46 @@ class FeedPage extends Component {
     constructor() {
         super()
         this.state = {
-            postItems: ""
+            postItems: [],
+            profileId: ""
         }
     }
 
     componentDidMount() {
-        this.getFeedData();
+        const profilePrefix = 'profile'
+        this.getProfile(profilePrefix)
+            .then(() => {
+                this.getPost();
+            })
     }
 
-    getFeedData = () => {
-        const prefix = 'Posts'
-        return this.getPost(prefix);
-    }
-
-    getPost = (prefix) => {
-        return postServices.getRequest(prefix)
+    getPost = () => {
+        const postPrefix = 'Posts'
+        return postServices.getRequest(postPrefix)
             .then(response => {
                 const data = utils.checkPostTypeAndCreate(response);
-                const postItems = data.map((post, i) => {
-                    return <PostItem key={i} postData={post} />
+                this.setState({ postItems: data })
+            })
+    }
+
+    getProfile = (prefix) => {
+        return postServices.getRequest(prefix)
+            .then((response) => {
+                this.setState({
+                    profileId: response.userId
                 })
-                this.setState({ postItems: postItems })
             })
     }
 
     render() {
+        const postItems = this.state.postItems.map((post, i) => {
+            return <PostItem key={i} postData={post} profileId={this.state.profileId} reload={this.getPost} />
+        })
+
         return (
             <div className="container">
-                <CreatePost reload={this.getFeedData} />
-                {this.state.postItems}
+                <CreatePost reload={this.getPost} />
+                {postItems}
             </div>
         );
     }

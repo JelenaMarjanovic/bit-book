@@ -9,7 +9,8 @@ class Constants {
     textPostUrl = this.BASE_END_POINT + 'TextPosts';
     imagePostUrl = this.BASE_END_POINT + 'ImagePosts';
     videoPostUrl = this.BASE_END_POINT + 'VideoPosts';
-    commentsPostUrl = this.BASE_END_POINT + 'Comments'
+    commentsPostUrl = this.BASE_END_POINT + 'Comments';
+    deletePostRequestUrl = this.BASE_END_POINT + 'Posts/';
 
     options = {
         headers: {

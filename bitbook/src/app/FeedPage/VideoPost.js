@@ -9,7 +9,7 @@ const VideoPost = () => {
                     allow="autoplay; encrypted-media" allowfullscreen></iframe>
             </div>
             <div className="card-content light-blue accent-3 white-text">
-                <p><span>Video post</span><span className="right">15 comments</span></p>
+                <p><span>Video post</span><span className="right"><i class="material-icons">delete</i></span><span className="right">15 comments</span></p>
             </div>
         </div >
     );

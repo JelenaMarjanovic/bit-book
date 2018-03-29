@@ -7,7 +7,6 @@ import registerServiceWorker from './registerServiceWorker';
 
 import './index.css';
 import "materialize-css/dist/css/materialize.min.css";
-import 'material-design-icons/iconfont/material-icons.css';
 import M from "materialize-css"
 
 M.AutoInit();
