@@ -7,14 +7,14 @@ const UserItem = ({ user }) => {
 
     return (
         <Link to={`/people/${userId}`}>
-        <li className="collection-item avatar" >
-            <img src={avatarUrl} alt={name} className="circle" />
-            <span> {name} </span>
-            <br />
-            <span className="title">{aboutShort}</span>
-            <br />
-            <p className="right">{user.getDate()}</p>
-        </li>
+            <li className="collection-item avatar" >
+                <img src={avatarUrl} alt={name} className="circle" />
+                <span> {name} </span>
+                <br />
+                <span className="title">{aboutShort}</span>
+                <br />
+                <p className="right">{user.getDate()}</p>
+            </li>
         </Link>
     );
 };

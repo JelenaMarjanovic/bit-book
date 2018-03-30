@@ -1,12 +1,13 @@
 import React from 'react'
+import { Link } from 'react-router-dom';
 
 import { HeaderNav } from './HeaderNav'
 
 const Header = () => {
     return (
-        <nav className="light-blue accent-3" role="navigation">
+        <nav className="light-blue accent-3">
             <div className="container">
-                <div className="nav-wrapper container"><a id="logo-container" href="#" className="brand-logo">Bit Book</a>
+                <div className="nav-wrapper container"><Link to="/"><span id="logo-container" className="brand-logo">Bit Book</span></Link>
                     <HeaderNav />
                 </div>
             </div>
