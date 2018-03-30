@@ -11,6 +11,7 @@ class Constants {
     videoPostUrl = this.BASE_END_POINT + 'VideoPosts';
     commentsPostUrl = this.BASE_END_POINT + 'Comments';
     deletePostRequestUrl = this.BASE_END_POINT + 'Posts/';
+    putRequestUrl = this.BASE_END_POINT + 'Profiles';
 
     options = {
         headers: {
