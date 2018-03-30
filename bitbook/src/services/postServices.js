@@ -24,6 +24,15 @@ class PostServices {
                 return res
             })
     }
+
+    createPutRequest = (content) => {
+        return axios.put(myConst.putRequestUrl, content, myConst.options)
+            .then((res) => {
+                return res
+            })
+    }
+
+
 }
 
 export const postServices = new PostServices();

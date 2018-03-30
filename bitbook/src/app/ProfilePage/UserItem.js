@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 const UserItem = ({ user }) => {
 
-    const { avatarUrl, name, aboutShort, userId } = user
+    const { avatarUrl, name, aboutShort, userId} = user
 
     return (
         <Link to={`/people/${userId}`}>

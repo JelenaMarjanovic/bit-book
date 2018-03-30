@@ -81,6 +81,15 @@ class Utils {
         return (text.includes("www") || text.includes("http")) ? false : true;
     }
 
+    firstLetterIsUpperCase = (text) => {
+        const firstLetter = text.charAt(0);
+        return (firstLetter === firstLetter.toUpperCase())
+    }
+
+    isValidName = (text) => {
+        return (this.firstLetterIsUpperCase(text) && (text.length < 31))
+    }
+
     showInvalidInput = (value, validate) => {
         if (value === "") {
             return false;
