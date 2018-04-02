@@ -4,6 +4,7 @@ import { postServices } from '../../services/postServices';
 import { utils } from '../../shared/utils';
 import { UserItem } from './UserItem'
 import { Search } from './Search'
+import { myConst } from '../../shared/constants';
 
 class PeoplePage extends Component {
     constructor() {
@@ -15,13 +16,11 @@ class PeoplePage extends Component {
     }
 
     componentDidMount() {
-        this.getFeedData();
+        this.getUsersList();
     }
 
-    getFeedData = () => {
-        const prefix = 'users'
-
-        return postServices.getRequest(prefix)
+    getUsersList = () => {
+        return postServices.getRequest(myConst.usersUrl)
             .then(response => {
                 const usersList = response.map(user => utils.createUser(user))
                 this.setState({ usersList: usersList, filteredUsers: usersList })
@@ -35,14 +34,14 @@ class PeoplePage extends Component {
     filterUsers = (valueToSearch) => {
         const { usersList } = this.state
         const matchedUsers = utils.searchUsersByName(usersList, valueToSearch);
-    
+
         this.setState({ filteredUsers: matchedUsers });
     }
 
     render() {
         return (
             <div className="container">
-                <Search filterUsers = {this.filterUsers}/>
+                <Search filterUsers={this.filterUsers} />
                 <ul className="collection">
                     {this.createUserItems()}
                 </ul>

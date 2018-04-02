@@ -6,6 +6,11 @@ class Constants {
     typeImage = "image";
     typeText = "text";
     typeVideo = "video";
+
+    profileUrl = 'profile';
+    postsUrl = 'Posts';
+    usersUrl = "users";
+
     textPostUrl = this.BASE_END_POINT + 'TextPosts';
     imagePostUrl = this.BASE_END_POINT + 'ImagePosts';
     videoPostUrl = this.BASE_END_POINT + 'VideoPosts';

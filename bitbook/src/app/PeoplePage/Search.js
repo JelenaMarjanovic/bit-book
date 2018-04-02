@@ -1,8 +1,8 @@
-import React from 'react'
+import React, { Component } from 'react'
 import './Search.css'
 
-class Search extends React.Component {
-    constructor(props){
+class Search extends Component {
+    constructor(props) {
         super(props)
         this.state = {
             value: ""
@@ -10,13 +10,13 @@ class Search extends React.Component {
     }
 
     handleChange = (event) => {
-        const {value} = event.target
-        this.setState({ value: value});
+        const { value } = event.target
+        this.setState({ value: value });
     }
 
     componentDidUpdate(prevProps, prevState) {
-        const { value: currentValue} = this.state;
-        const { value: previousValue} = prevState;
+        const { value: currentValue } = this.state;
+        const { value: previousValue } = prevState;
 
         if (previousValue !== currentValue) {
             this.props.filterUsers(currentValue);

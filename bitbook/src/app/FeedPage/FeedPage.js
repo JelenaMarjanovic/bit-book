@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 
 import { postServices } from '../../services/postServices';
 import { utils } from '../../shared/utils';
@@ -6,33 +6,27 @@ import { utils } from '../../shared/utils';
 import { CreatePost } from './CreatePost/CreatePost'
 import { PostItem } from './PostItem';
 import { FilterPosts } from './FilterPosts';
+import { myConst } from '../../shared/constants';
 
 class FeedPage extends Component {
     constructor() {
         super()
         this.state = {
             postItems: [],
-            profileId: "",
+            ownerId: "",
             postType: "all"
         }
     }
 
     componentDidMount() {
-        const profilePrefix = 'profile'
-        this.getProfile(profilePrefix)
+        this.getOwner()
             .then(() => {
                 this.getPost();
             })
     }
 
-    shouldComponentUpdate(nextProps, nextState) {
-        this.setState()
-        return true;
-    }
-
     getPost = () => {
-        const postPrefix = 'Posts'
-        return postServices.getRequest(postPrefix)
+        return postServices.getRequest(myConst.postsUrl)
             .then(response => {
                 const filteredResponse = this.handleFilter(response)
                 this.resetState();
@@ -64,11 +58,11 @@ class FeedPage extends Component {
         this.getPost()
     }
 
-    getProfile = (prefix) => {
-        return postServices.getRequest(prefix)
-            .then((response) => {
+    getOwner = () => {
+        return postServices.getRequest(myConst.profileUrl)
+            .then(response => {
                 this.setState({
-                    profileId: response.userId
+                    ownerId: response.userId
                 })
             })
     }
@@ -77,17 +71,17 @@ class FeedPage extends Component {
 
     render() {
         const postItems = this.state.postItems.map((post, i) => {
-            return <PostItem key={i} postData={post} profileId={this.state.profileId} reload={this.getPost} />
+            return <PostItem key={i} postData={post} profileId={this.state.ownerId} reload={this.getPost} />
         })
 
         return (
-            <React.Fragment>
+            <Fragment>
                 <FilterPosts handleState={this.handleState} />
                 <div className="container">
                     <CreatePost reload={this.getPost} />
                     {postItems}
                 </div>
-            </React.Fragment>
+            </Fragment>
         );
     }
 }

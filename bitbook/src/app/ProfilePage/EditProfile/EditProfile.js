@@ -17,17 +17,17 @@ class EditProfile extends React.Component {
         }
     }
 
-    onChangeHandler = ({field, value}) => {
-        this.setState({[field]: value}, () => {
+    onChangeHandler = ({ field, value }) => {
+        this.setState({ [field]: value }, () => {
             const { name, description, image } = this.state
 
             const isValid = this.isValidForm(name, description, image)
-            this.setState({ isValidForm: isValid})
-        }) 
+            this.setState({ isValidForm: isValid })
+        })
     }
 
     updateProfile = () => {
-        const { name, description, image} = this.state
+        const { name, description, image } = this.state
         const data = {
             "name": name,
             "about": description,
@@ -36,8 +36,10 @@ class EditProfile extends React.Component {
             "avatarUrl": image
         }
         postServices.createPutRequest(data)
-            .then((res) => {
+            .then(() => {
                 this.props.closeModal();
+            })
+            .then(() => {
                 this.props.reload();
             })
             .catch((error) => {

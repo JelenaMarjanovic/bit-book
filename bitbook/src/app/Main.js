@@ -3,7 +3,7 @@ import { Route } from 'react-router-dom'
 import { PostPageDetails } from './FeedPage/PostPageDetails/PostPageDetails';
 
 import { FeedPage } from './FeedPage/FeedPage';
-import { PeoplePage } from './ProfilePage/PeoplePage';
+import { PeoplePage } from './PeoplePage/PeoplePage';
 import { ProfilePage } from './ProfilePage/ProfilePage';
 
 class Main extends Component {

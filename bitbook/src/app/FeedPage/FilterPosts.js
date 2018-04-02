@@ -7,14 +7,13 @@ class FilterPosts extends Component {
         super(props)
         this.state = {
             instance: {},
-            filterTitle: "All posts"
+            filterTitle: "all posts"
         }
     }
 
     componentDidMount() {
         const elem = document.querySelector('#filterPosts');
         M.Dropdown.init(elem);
-
     }
 
     getValueAndSetState = (event) => {

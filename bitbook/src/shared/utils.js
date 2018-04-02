@@ -20,7 +20,16 @@ class Utils {
         })
     }
 
-
+    createSinglePost = (post) => {
+        if (post.type === myConst.typeImage) {
+            return new ImagePost(post)
+        } else if (post.type === myConst.typeText) {
+            return new TextPost(post)
+        } else if (post.type === myConst.typeVideo) {
+            return new VideoPost(post)
+        }
+        return true
+    }
 
     getPostTemplate = (type, content, id = "default") => {
         if (type === "text") {
@@ -128,11 +137,11 @@ class Utils {
         const nowDate = new Date();
         return (this.formatDate(date) === this.formatDate(nowDate))
     }
-    
+
     userNameContains = (user, valueToFind) => {
         const userFullName = user.name.toLowerCase();
         const value = valueToFind.toLowerCase();
-        
+
         return userFullName.includes(value);
     }
 
