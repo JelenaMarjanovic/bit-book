@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { Component, Fragment } from 'react'
 import M from "materialize-css"
 
 import { NewTextPost } from './NewTextPost'
@@ -6,7 +6,7 @@ import { NewVideoPost } from './NewVideoPost'
 import { NewImagePost } from './NewImagePost'
 
 
-class CreatePost extends React.Component {
+class CreatePost extends Component {
     constructor(props) {
         super(props)
         this.state = {
@@ -29,12 +29,11 @@ class CreatePost extends React.Component {
         this.setState({ activeModal: instance })
     }
 
-
     render() {
         const { reload } = this.props
         const { activeModal } = this.state
         return (
-            <React.Fragment>
+            <Fragment>
                 <NewTextPost reload={reload} modalInstance={activeModal} />
                 <NewVideoPost reload={reload} modalInstance={activeModal} />
                 <NewImagePost reload={reload} modalInstance={activeModal} />
@@ -48,7 +47,7 @@ class CreatePost extends React.Component {
                         <li onClick={this.newPost}><a className="btn-floating blue"><i id="Video" className="material-icons">ondemand_video</i></a></li>
                     </ul>
                 </div>
-            </React.Fragment>
+            </Fragment>
         )
     }
 }

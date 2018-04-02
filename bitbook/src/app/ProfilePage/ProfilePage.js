@@ -4,6 +4,7 @@ import { postServices } from '../../services/postServices';
 import { utils } from '../../shared/utils';
 import { EditProfile } from './EditProfile/EditProfile'
 import M from 'materialize-css'
+import { myConst } from '../../shared/constants';
 
 class ProfilePage extends Component {
 
@@ -16,25 +17,32 @@ class ProfilePage extends Component {
     }
 
     componentDidMount() {
-        this.checkOwnerAndReload();
+        this.checkOwnerAndFetch();
     }
 
-    checkOwnerAndReload = () => {
+    checkOwnerAndFetch = () => {
         const currentUrl = this.props.location.pathname;
 
         if (currentUrl === '/profile/') {
-            const prefix = 'profile';
-            this.getProfile(prefix);
+            this.getProfile(myConst.profileUrl);
             this.setState({ isOwner: true })
         } else {
-            const prefix = `users/${currentUrl.slice(-3)}`;
-            this.getProfile(prefix);
+            const userUrl = this.getUserUrl(currentUrl);
+
+            this.getProfile(userUrl);
             this.setState({ isOwner: false })
         }
     }
 
-    getProfile = (prefix) => {
-        postServices.getRequest(prefix)
+    getUserUrl = (string) => {
+        const stringArr = string.split("/");
+        const id = stringArr[2];
+
+        return `users/${id}`
+    }
+
+    getProfile = (url) => {
+        postServices.getRequest(url)
             .then(response => {
                 const singleUser = utils.createSingleUser(response);
                 this.setState({ singleUser: singleUser })
@@ -44,6 +52,7 @@ class ProfilePage extends Component {
     openModal = () => {
         const elem = document.querySelector(`#editProfile`);
         const instance = M.Modal.init(elem);
+        instance.options.preventScrolling = false;
         instance.open();
     }
 
@@ -64,7 +73,7 @@ class ProfilePage extends Component {
 
         return (
             <React.Fragment>
-                <EditProfile closeModal={this.closeModal} reload={this.checkOwnerAndReload}/>
+                <EditProfile closeModal={this.closeModal} reload={this.checkOwnerAndReload} />
                 <div className="row">
                     <div className="col s8 offset-s2">
                         <div className="profile center">

@@ -28,8 +28,8 @@ class PostPageDetails extends Component {
         const commentUrl = `/Comments?postId=${this.state.postId}`
 
         postServices.getRequest(postUrl + this.state.postId).then((res) => {
-            const selectedPost = utils.checkPostTypeAndCreate([res])
-            const renderItem = this.setItem(this.state.postType, selectedPost[0])
+            const selectedPost = utils.createSinglePost(res)
+            const renderItem = this.setItem(this.state.postType, selectedPost)
             this.setState({
                 renderItem: renderItem
             })
