@@ -148,6 +148,19 @@ class Utils {
     searchUsersByName = (users, valueToSearch) => {
         return users.filter(user => this.userNameContains(user, valueToSearch))
     }
+
+    getSessionId = () => {
+        return localStorage.getItem("sessionID")
+    }
+
+    setSessionId = (sessionId) => {
+        localStorage.setItem("sessionID", sessionId)
+    }
+
+    checkIfAuth = () => {
+        const sessionId = this.getSessionId();
+        return (sessionId) ? true : false;
+    }
 }
 
 export const utils = new Utils();

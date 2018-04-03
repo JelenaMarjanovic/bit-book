@@ -17,7 +17,7 @@ class FilterPosts extends Component {
     }
 
     getValueAndSetState = (event) => {
-        const value = (event.target.innerHTML).toLowerCase();
+        const value = (event.target.dataset.name).toLowerCase();
         const filterTitle = `${value} posts`;
 
         this.setState({
@@ -36,10 +36,10 @@ class FilterPosts extends Component {
                     data-target='dropdown1' >{filterTitle}</a>
 
                 <ul id='dropdown1' className='dropdown-content myDropDownList'>
-                    <li className="light-blue-text text-accent-3" onClick={this.getValueAndSetState}>All</li>
-                    <li className="light-blue-text text-accent-3" onClick={this.getValueAndSetState}>Text</li>
-                    <li className="light-blue-text text-accent-3" onClick={this.getValueAndSetState}>Image</li>
-                    <li className="light-blue-text text-accent-3" onClick={this.getValueAndSetState}>Video</li>
+                    <li className="light-blue-text text-accent-3" data-name="all" onClick={this.getValueAndSetState}>All</li>
+                    <li className="light-blue-text text-accent-3" data-name="text" onClick={this.getValueAndSetState}>Text</li>
+                    <li className="light-blue-text text-accent-3" data-name="image" onClick={this.getValueAndSetState}>Image</li>
+                    <li className="light-blue-text text-accent-3" data-name="video" onClick={this.getValueAndSetState}>Video</li>
                 </ul>
             </div>
         );
