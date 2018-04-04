@@ -8,7 +8,7 @@ const isAuth = () => {
     return class authenticate extends Component {
 
         toShow = () => {
-            const isAuthenticated = false //utils.checkIfAuth()
+            const isAuthenticated = utils.checkIfAuth()
             return isAuthenticated ? <App /> : <LoginPage />
         }
 

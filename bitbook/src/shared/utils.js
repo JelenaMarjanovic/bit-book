@@ -108,7 +108,7 @@ class Utils {
         let re = /^(?=.*[\d])(?=.*[A-Z])(?=.*[a-z])(?=.*[!@#$%^&*])[\w!@#$%^&*]{8,}$/;
         return re.test(text);
     }
-    
+
     showInvalidInput = (value, validate) => {
         if (value === "") {
             return false;
@@ -170,6 +170,16 @@ class Utils {
     checkIfAuth = () => {
         const sessionId = this.getSessionId();
         return (sessionId) ? true : false;
+    }
+
+    getOptions = () => {
+        return {
+            headers: {
+                "Content-Type": "application/json",
+                "Key": "7E47472",
+                "SessionId": localStorage.getItem("sessionID")
+            }
+        }
     }
 }
 
