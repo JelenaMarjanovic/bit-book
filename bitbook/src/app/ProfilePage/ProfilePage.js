@@ -73,7 +73,7 @@ class ProfilePage extends Component {
 
         return (
             <React.Fragment>
-                <EditProfile closeModal={this.closeModal} reload={this.checkOwnerAndReload} />
+                <EditProfile closeModal={this.closeModal} reload={this.checkOwnerAndFetch} />
                 <div className="row">
                     <div className="col s8 offset-s2">
                         <div className="profile center">

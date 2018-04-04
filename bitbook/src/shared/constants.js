@@ -1,7 +1,4 @@
-
-
 class Constants {
-
     BASE_END_POINT = "http://bitbookapi.azurewebsites.net/api/";
     typeImage = "image";
     typeText = "text";
@@ -11,6 +8,8 @@ class Constants {
     postsUrl = 'Posts';
     usersUrl = "users";
 
+    registerUrl = this.BASE_END_POINT + 'register'
+    loginUrl = this.BASE_END_POINT + 'login';
     textPostUrl = this.BASE_END_POINT + 'TextPosts';
     imagePostUrl = this.BASE_END_POINT + 'ImagePosts';
     videoPostUrl = this.BASE_END_POINT + 'VideoPosts';
@@ -18,11 +17,11 @@ class Constants {
     deletePostRequestUrl = this.BASE_END_POINT + 'Posts/';
     putRequestUrl = this.BASE_END_POINT + 'Profiles';
 
-    options = {
+
+    loginOptions = {
         headers: {
             "Content-Type": "application/json",
-            "Key": "bitbook",
-            "SessionId": "7A5D8FF8-B04D-4C8C-9812-8B44EB7E4C94"
+            "Key": "7E47472",
         }
     }
 }

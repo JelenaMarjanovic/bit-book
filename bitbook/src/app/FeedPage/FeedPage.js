@@ -23,7 +23,7 @@ class FeedPage extends Component {
             .then(() => {
                 this.getPost();
             })
-    }
+   }
 
     getPost = () => {
         return postServices.getRequest(myConst.postsUrl)
@@ -73,7 +73,6 @@ class FeedPage extends Component {
         const postItems = this.state.postItems.map((post, i) => {
             return <PostItem key={i} postData={post} profileId={this.state.ownerId} reload={this.getPost} />
         })
-
         return (
             <Fragment>
                 <FilterPosts handleState={this.handleState} />

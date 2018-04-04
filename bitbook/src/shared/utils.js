@@ -99,6 +99,16 @@ class Utils {
         return (this.firstLetterIsUpperCase(text) && (text.length < 31))
     }
 
+    isValidEmail = (text) => {
+        let re = /\S+@\S+\.\S+/;
+        return re.test(text);
+    }
+
+    isValidPass = (text) => {
+        let re = /^(?=.*[\d])(?=.*[A-Z])(?=.*[a-z])(?=.*[!@#$%^&*])[\w!@#$%^&*]{8,}$/;
+        return re.test(text);
+    }
+
     showInvalidInput = (value, validate) => {
         if (value === "") {
             return false;
@@ -147,6 +157,29 @@ class Utils {
 
     searchUsersByName = (users, valueToSearch) => {
         return users.filter(user => this.userNameContains(user, valueToSearch))
+    }
+
+    getSessionId = () => {
+        return localStorage.getItem("sessionID")
+    }
+
+    setSessionId = (sessionId) => {
+        localStorage.setItem("sessionID", sessionId)
+    }
+
+    checkIfAuth = () => {
+        const sessionId = this.getSessionId();
+        return (sessionId) ? true : false;
+    }
+
+    getOptions = () => {
+        return {
+            headers: {
+                "Content-Type": "application/json",
+                "Key": "7E47472",
+                "SessionId": localStorage.getItem("sessionID")
+            }
+        }
     }
 }
 

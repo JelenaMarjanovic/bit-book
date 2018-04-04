@@ -1,0 +1,21 @@
+li.tab {
+    border: solid 2px gray;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    border-bottom: none;
+}
+
+#login, #register {
+    height: auto;
+    border: solid 2px gray;
+    padding: 20px;
+}
+
+.loginRegister {
+    margin-top: 10px;
+    background-color: transparent;
+}
+
+.loginPage {
+    margin-top: 20vh;
+}

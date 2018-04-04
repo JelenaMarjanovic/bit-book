@@ -1,8 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { HashRouter } from 'react-router-dom'
+import { HashRouter, Route } from 'react-router-dom'
 
-import { App } from './app/App';
+import { isAuth } from './app/isAuth'
 import registerServiceWorker from './registerServiceWorker';
 
 import './index.css';
@@ -13,7 +13,7 @@ M.AutoInit();
 
 ReactDOM.render(
     <HashRouter>
-        <App />
+        <Route path="/" component={isAuth()} />
     </HashRouter>,
     document.getElementById('root'));
 registerServiceWorker();
