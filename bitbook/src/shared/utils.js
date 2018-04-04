@@ -99,6 +99,16 @@ class Utils {
         return (this.firstLetterIsUpperCase(text) && (text.length < 31))
     }
 
+    isValidEmail = (text) => {
+        let re = /\S+@\S+\.\S+/;
+        return re.test(text);
+    }
+
+    isValidPass = (text) => {
+        let re = /^(?=.*[\d])(?=.*[A-Z])(?=.*[a-z])(?=.*[!@#$%^&*])[\w!@#$%^&*]{8,}$/;
+        return re.test(text);
+    }
+    
     showInvalidInput = (value, validate) => {
         if (value === "") {
             return false;

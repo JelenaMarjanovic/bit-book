@@ -6,9 +6,9 @@ li.tab {
 }
 
 #login, #register {
-    height: 350px;
+    height: auto;
     border: solid 2px gray;
-    padding-top: 20px;
+    padding: 20px;
 }
 
 .loginRegister {
