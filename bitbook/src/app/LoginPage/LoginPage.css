@@ -19,3 +19,9 @@ li.tab {
 .loginPage {
     margin-top: 20vh;
 }
+
+@media (max-width: 992px) {
+    .loginPage {
+        margin-top: 0;
+    }
+}

@@ -32,7 +32,7 @@ class FilterPosts extends Component {
 
         return (
             <div>
-                <a id="filterPosts" className='dropdown-trigger btn light-blue accent-3 right myDropDownButton'
+                <a id="filterPosts" className='dropdown-trigger btn myDropDownButton'
                     data-target='dropdown1' >{filterTitle}</a>
 
                 <ul id='dropdown1' className='dropdown-content myDropDownList'>
