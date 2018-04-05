@@ -2,7 +2,6 @@ import React, { Component, Fragment } from 'react';
 
 import { postServices } from '../../services/postServices';
 import { utils } from '../../shared/utils';
-import M from 'materialize-css'
 
 import { CreatePost } from './CreatePost/CreatePost'
 import { PostItem } from './PostItem';
@@ -24,7 +23,6 @@ class FeedPage extends Component {
             .then(() => {
                 this.getPost();
             })
-        this.initImgTheater();
     }
 
     getPost = () => {
@@ -35,11 +33,6 @@ class FeedPage extends Component {
                 const data = utils.checkPostTypeAndCreate(filteredResponse);
                 this.setState({ postItems: data })
             })
-    }
-
-    initImgTheater = () => {
-        const elem = document.querySelector('.materialboxed');
-        const instance = M.Materialbox.init(elem);
     }
 
     handleFilter = (response) => {

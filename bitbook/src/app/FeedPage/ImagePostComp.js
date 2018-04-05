@@ -10,7 +10,7 @@ const ImagePostComp = ({ postData, profileId, reload }) => {
 
     const openPreviewMode = (e) => {
         e.preventDefault()
-        var elem = document.querySelector('.materialboxed');
+        var elem = document.querySelector(`img[data-instance='${id}']`);
         var instance = M.Materialbox.init(elem);
 
         if (instance.$el[0].className.includes("active")) {
@@ -23,7 +23,7 @@ const ImagePostComp = ({ postData, profileId, reload }) => {
     return (
         <div className="card" id={id}>
             <div onClick={openPreviewMode} className="card-image waves-effect waves-block waves-light">
-                <img className="activator materialboxed" src={imageUrl} alt="" />
+                <img className="activator materialboxed" data-instance={id} src={imageUrl} alt="" />
             </div>
             <div className="card-content light-blue accent-3 white-text">
                 <p><span>{type} post</span>{showDelete}<span className="right">{commentsNum} comments</span></p>
