@@ -1,10 +1,12 @@
-import React, { Component } from "react"
-import { withRouter } from 'react-router-dom'
-import { utils } from './../../shared/utils'
-import { postServices } from './../../services/postServices'
+import React, { Component } from 'react';
+import { withRouter } from 'react-router-dom';
+
+import { utils } from './../../shared/utils';
+import { postServices } from './../../services/postServices';
+
 class RegisterCard extends Component {
     constructor(props) {
-        super(props)
+        super(props);
         this.state = {
             registerEmail: "",
             registerPass: "",
@@ -17,39 +19,52 @@ class RegisterCard extends Component {
     }
 
     handleChange = (e) => {
-        const { value, id } = e.target
-        this.setState({ [id]: value })
-        const funcName = "validate" + id
+        const { value, id } = e.target;
+        this.setState({
+            [id]: value
+        });
+
+        const funcName = "validate" + id;
         this[funcName](value);
     }
 
     isValidForm = () => {
         const { isValidEmail, isValidPass, isValidName } = this.state;
-        return isValidEmail && isValidPass && isValidName
+
+        return isValidEmail && isValidPass && isValidName;
     }
 
     validateregisterEmail = (value) => {
-        const valid = utils.isValidEmail(value)
-        this.setState({ isValidEmail: valid})
+        const valid = utils.isValidEmail(value);
+
+        this.setState({
+            isValidEmail: valid
+        });
     }
 
     validateregisterPass = (value) => {
-        const valid = utils.isValidPass(value)
-        this.setState({ isValidPass: valid})
+        const valid = utils.isValidPass(value);
+
+        this.setState({
+            isValidPass: valid
+        });
     }
 
     validateregisterName = (value) => {
-        const valid = utils.isValidName(value)
-        this.setState({ isValidName: valid})
+        const valid = utils.isValidName(value);
+
+        this.setState({
+            isValidName: valid
+        });
     }
 
     isValid = () => (!this.isValidForm()) ? "disabled" : "";
 
     showError = (validate, value) => {
-        const error = (!validate && value !== "") ? true : false
-        return (error) ? "isInvalid" : "isValid"
-    };
+        const error = (!validate && value !== "") ? true : false;
 
+        return (error) ? "isInvalid" : "isValid";
+    }
 
     registerRequest = () => {
         const data = {
@@ -57,7 +72,7 @@ class RegisterCard extends Component {
             "password": this.state.registerPass,
             "name": this.state.registerName,
             "email":this.state.registerEmail
-        }
+        };
 
         postServices.createRegisterRequest(data)
             .then(res => {
@@ -65,17 +80,19 @@ class RegisterCard extends Component {
                 this.props.activeTab.select("login");
             })
             .catch(error => {
-                this.setState({ usernameExist: true })
+                this.setState({
+                    usernameExist: true
+                });
                 console.log(error);
-            })
+            });
     }
 
     nameAlreadyExist = () => {
-        return (this.state.usernameExist) ? "isInvalid" : "isValid"
+        return (this.state.usernameExist) ? "isInvalid" : "isValid";
     }
 
     render() {
-        const { registerEmail, registerPass, registerName, isValidEmail, isValidPass, isValidName } = this.state
+        const { registerEmail, registerPass, registerName, isValidEmail, isValidPass, isValidName } = this.state;
 
         return (
             <div id="register" className="col s12">

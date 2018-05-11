@@ -1,24 +1,26 @@
 import React, { Component } from 'react';
+
 import { postServices } from '../../services/postServices';
 
 class DeleteItemComp extends Component {
     constructor(props) {
-        super(props)
+        super(props);
         this.state = {
             postId: ""
         }
 
     }
+
     componentDidMount() {
         this.setState({
             postId: this.props.postId
-        })
+        });
     }
 
     componentWillReceiveProps(nextProps) {
         this.setState({
             postId: nextProps.postId
-        })
+        });
     }
 
     deletePost = (event) => {
@@ -31,7 +33,7 @@ class DeleteItemComp extends Component {
             .catch((error) => {
                 console.log(error)
                 this.props.reload();
-            })
+            });
     }
 
     render() {

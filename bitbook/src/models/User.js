@@ -1,4 +1,4 @@
-import { utils } from '../shared/utils'
+import { utils } from '../shared/utils';
 
 class User {
     constructor({ id, name, aboutShort, lastPostDate, avatarUrl }) {
@@ -13,7 +13,7 @@ class User {
         const lastPost = this.lastPostDate;
         const isToday = utils.isSameDay(lastPost);
         
-        if(isToday) {
+        if (isToday) {
             return `Last post at: ${utils.formatTime(lastPost)}`;
         } else {
             return `Last post at: ${utils.formatDate(lastPost)} ${utils.formatTime(lastPost)}`;

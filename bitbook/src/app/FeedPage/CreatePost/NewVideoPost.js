@@ -1,10 +1,11 @@
 import React from 'react';
-import { utils } from '../../../shared/utils'
-import { postServices } from '../../../services/postServices'
+
+import { utils } from '../../../shared/utils';
+import { postServices } from '../../../services/postServices';
 
 class NewVideoPost extends React.Component {
     constructor(props) {
-        super(props)
+        super(props);
         this.state = {
             url: "",
             isValidUrl: false,
@@ -13,11 +14,15 @@ class NewVideoPost extends React.Component {
     }
 
     onChangeHandler = (e) => {
-        const { value } = e.target
+        const { value } = e.target;
         const isValid = utils.isYouTubeURL(value);
-        const showError = utils.showInvalidInput(value, isValid)
+        const showError = utils.showInvalidInput(value, isValid);
 
-        this.setState({ url: value, isValidUrl: isValid, showError: showError })
+        this.setState({
+            url: value,
+            isValidUrl: isValid,
+            showError: showError
+        });
     }
 
     createPost = () => {
@@ -25,15 +30,15 @@ class NewVideoPost extends React.Component {
 
         postServices.createPostRequest("video", this.state.url)
             .then(() => {
-                reload()
+                reload();
             })
             .then(() => {
                 modalInstance.close();
-                this.setState({ url: "" })
-            })
+                this.setState({
+                    url: ""
+                });
+            });
     }
-
-
 
     isValid = () => (!this.state.isValidUrl) ? "disabled" : "";
     showError = () => (this.state.showError) ? "isInvalid" : "isValid";

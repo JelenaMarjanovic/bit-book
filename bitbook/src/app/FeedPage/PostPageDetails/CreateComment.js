@@ -1,20 +1,19 @@
 import React, { Component } from 'react';
-import { postServices } from '../../../services/postServices';
 
+import { postServices } from '../../../services/postServices';
 
 class CreateComment extends Component {
     constructor(props) {
-        super(props)
+        super(props);
         this.state = {
             text: ""
         }
-
     }
 
     handleChange = (event) => {
         this.setState({
             text: event.target.value
-        })
+        });
         this.handleButtonChange();
     }
 
@@ -24,8 +23,10 @@ class CreateComment extends Component {
         postServices.createPostRequest('comment', this.state.text, this.props.postId)
             .then((res) => {
                 this.props.getComments();
-                this.setState({ text: "" });
-            })
+                this.setState({
+                    text: ""
+                });
+            });
     }
 
     render() {

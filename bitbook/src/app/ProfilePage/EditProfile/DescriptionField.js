@@ -1,10 +1,9 @@
-import React from 'react'
-import { utils } from '../../../shared/utils'
+import React from 'react';
+
+import { utils } from '../../../shared/utils';
 
 const DescriptionField = ({ onChangeHandler, descriptionValue }) => {
-
     const descriptionIsValid = utils.firstLetterIsUpperCase(descriptionValue);
-
     const showError = (!descriptionIsValid) ? "isInvalid" : "isValid";
 
     const onInputChange = (event) => {

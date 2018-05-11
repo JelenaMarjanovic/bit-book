@@ -1,10 +1,11 @@
 import React from 'react';
-import { utils } from '../../../shared/utils'
-import { postServices } from '../../../services/postServices'
+
+import { utils } from '../../../shared/utils';
+import { postServices } from '../../../services/postServices';
 
 class NewTextPost extends React.Component {
     constructor(props) {
-        super(props)
+        super(props);
         this.state = {
             text: "",
             isValidText: false,
@@ -13,23 +14,30 @@ class NewTextPost extends React.Component {
     }
 
     onChangeHandler = (e) => {
-        const { value } = e.target
+        const { value } = e.target;
         const isValid = utils.isText(value);
-        const showError = utils.showInvalidInput(value, isValid)
+        const showError = utils.showInvalidInput(value, isValid);
 
-        this.setState({ text: value, isValidText: isValid, showError: showError })
+        this.setState({
+            text: value,
+            isValidText: isValid,
+            showError: showError
+        });
     }
 
     createPost = () => {
         const { reload, modalInstance } = this.props;
+
         postServices.createPostRequest("text", this.state.text)
             .then(() => {
-                reload()
+                reload();
             })
             .then(() => {
                 modalInstance.close();
-                this.setState({ text: "" })
-            })
+                this.setState({
+                    text: ""
+                });
+            });
     }
 
     isValid = () => (!this.state.isValidText) ? "disabled" : "";

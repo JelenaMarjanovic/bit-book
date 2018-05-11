@@ -1,12 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { utils } from '../../shared/utils'
+
+import { utils } from '../../shared/utils';
+
 import { DeleteItemComp } from './DeleteItemComp';
 
 const VideoPostComp = ({ postData, profileId, reload }) => {
-
     const { id, type, commentsNum, videoUrl, userId } = postData;
-    const filteredURl = utils.filterYouTube(videoUrl)
+    const filteredURl = utils.filterYouTube(videoUrl);
 
     const showDelete = (profileId === userId) ? <DeleteItemComp postId={id} reload={reload} /> : "";
 
@@ -25,7 +26,6 @@ const VideoPostComp = ({ postData, profileId, reload }) => {
 };
 
 export { VideoPostComp };
-
 
 VideoPostComp.propTypes = {
     postData: PropTypes.object

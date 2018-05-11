@@ -1,8 +1,8 @@
-import React from 'react'
-import { utils } from '../../../shared/utils'
+import React from 'react';
+
+import { utils } from '../../../shared/utils';
 
 const NameField = ({ onChangeHandler, nameValue }) => {
-
     const nameIsValid = utils.isValidName(nameValue);
 
     const showError = (!nameIsValid) ? "isInvalid" : "isValid";

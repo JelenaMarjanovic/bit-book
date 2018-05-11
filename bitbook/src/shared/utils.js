@@ -6,29 +6,30 @@ import { Profile } from '../models/Profile';
 import { User } from '../models/User';
 
 class Utils {
-
     checkPostTypeAndCreate = (data) => {
         return data.map((post) => {
             if (post.type === myConst.typeImage) {
-                return new ImagePost(post)
+                return new ImagePost(post);
             } else if (post.type === myConst.typeText) {
-                return new TextPost(post)
+                return new TextPost(post);
             } else if (post.type === myConst.typeVideo) {
-                return new VideoPost(post)
+                return new VideoPost(post);
             }
-            return true
-        })
+
+            return true;
+        });
     }
 
     createSinglePost = (post) => {
         if (post.type === myConst.typeImage) {
-            return new ImagePost(post)
+            return new ImagePost(post);
         } else if (post.type === myConst.typeText) {
-            return new TextPost(post)
+            return new TextPost(post);
         } else if (post.type === myConst.typeVideo) {
-            return new VideoPost(post)
+            return new VideoPost(post);
         }
-        return true
+
+        return true;
     }
 
     getPostTemplate = (type, content, id = "default") => {
@@ -71,18 +72,22 @@ class Utils {
     isImageUrl = (rawUrl) => {
         const p = /\.(jpeg|jpg|gif|png)$/;
         const url = rawUrl.trim();
+
         if (url.match(p)) {
             return true;
         }
+
         return false;
     }
 
     isYouTubeURL = (rawUrl) => {
         const p = /^(?:https?:\/\/)?(?:m\.|www\.)?(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=|watch\?.+&v=))((\w|-){11})(\?\S*)?$/;
         const url = rawUrl.trim();
+
         if (url.match(p)) {
             return true;
         }
+
         return false;
     }
 
@@ -92,20 +97,23 @@ class Utils {
 
     firstLetterIsUpperCase = (text) => {
         const firstLetter = text.charAt(0);
-        return (firstLetter === firstLetter.toUpperCase())
+
+        return (firstLetter === firstLetter.toUpperCase());
     }
 
     isValidName = (text) => {
-        return (this.firstLetterIsUpperCase(text) && (text.length < 31))
+        return (this.firstLetterIsUpperCase(text) && (text.length < 31));
     }
 
     isValidEmail = (text) => {
-        let re = /\S+@\S+\.\S+/;
+        const re = /\S+@\S+\.\S+/;
+
         return re.test(text);
     }
 
     isValidPass = (text) => {
-        let re = /^(?=.*[\d])(?=.*[A-Z])(?=.*[a-z])(?=.*[!@#$%^&*])[\w!@#$%^&*]{8,}$/;
+        const re = /^(?=.*[\d])(?=.*[A-Z])(?=.*[a-z])(?=.*[!@#$%^&*])[\w!@#$%^&*]{8,}$/;
+
         return re.test(text);
     }
 
@@ -129,23 +137,24 @@ class Utils {
 
     checkUrl = (type) => {
         if (type === "text") {
-            return "TextPosts/"
+            return "TextPosts/";
         } else if (type === "image") {
-            return "ImagePosts/"
+            return "ImagePosts/";
         } else if (type === "video") {
-            return "VideoPosts/"
+            return "VideoPosts/";
         } else {
-            return "Invalid Post type"
+            return "Invalid Post type";
         }
     }
 
-    formatDate = (date) => `${date.getDate()}.${date.getMonth() + 1}.${date.getFullYear()}.`
+    formatDate = (date) => `${date.getDate()}.${date.getMonth() + 1}.${date.getFullYear()}.`;
 
-    formatTime = (date) => `${date.getHours()}:${date.getMinutes()}`
+    formatTime = (date) => `${date.getHours()}:${date.getMinutes()}`;
 
     isSameDay = (date) => {
         const nowDate = new Date();
-        return (this.formatDate(date) === this.formatDate(nowDate))
+
+        return (this.formatDate(date) === this.formatDate(nowDate));
     }
 
     userNameContains = (user, valueToFind) => {
@@ -156,19 +165,20 @@ class Utils {
     }
 
     searchUsersByName = (users, valueToSearch) => {
-        return users.filter(user => this.userNameContains(user, valueToSearch))
+        return users.filter(user => this.userNameContains(user, valueToSearch));
     }
 
     getSessionId = () => {
-        return localStorage.getItem("sessionID")
+        return localStorage.getItem("sessionID");
     }
 
     setSessionId = (sessionId) => {
-        localStorage.setItem("sessionID", sessionId)
+        localStorage.setItem("sessionID", sessionId);
     }
 
     checkIfAuth = () => {
         const sessionId = this.getSessionId();
+        
         return (sessionId) ? true : false;
     }
 

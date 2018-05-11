@@ -1,13 +1,14 @@
-import React, { Component } from 'react'
-import M from 'materialize-css'
-import "./LoginPage.css"
+import React, { Component } from 'react';
 
-import LoginCard from './LoginCard'
-import RegisterCard from './RegisterCard'
+import M from 'materialize-css';
+import './LoginPage.css';
+
+import LoginCard from './LoginCard';
+import RegisterCard from './RegisterCard';
 
 class LoginPage extends Component {
     constructor(props) {
-        super(props)
+        super(props);
         this.state = {
             activeTab: null,
             activeTabName: "Login"
@@ -15,17 +16,24 @@ class LoginPage extends Component {
     }
 
     componentDidMount = () => {
-        let el = document.querySelector("#tabs-swipe-demo")
+        let el = document.querySelector("#tabs-swipe-demo");
+
         const instance = M.Tabs.init(el, {
             onShow: this.toggleTabName
-        })
-        this.setState({ activeTab: instance })
+        });
+        
+        this.setState({
+            activeTab: instance
+        });
     }
 
     toggleTabName = () => {
         const registerIsActive = this.state.activeTab.index;
         const tabName = (registerIsActive) ? "Register" : "Login";
-        this.setState({ activeTabName: tabName });
+
+        this.setState({
+            activeTabName: tabName
+        });
     }
 
     render() {

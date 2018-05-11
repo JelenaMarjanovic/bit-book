@@ -1,14 +1,15 @@
-import React, { Fragment } from 'react'
+import React, { Fragment } from 'react';
 import { Link, withRouter } from 'react-router-dom';
 
 const HeaderNav = (props) => {
     const logout = () => {
         localStorage.setItem("sessionID", "");
-        props.history.push("/")
+        props.history.push("/");
     }
+
     return (
         <Fragment>
-            <a href="#" data-target="mobile-demo" className="sidenav-trigger"><i className="material-icons">menu</i></a>
+            <a data-target="mobile-demo" className="sidenav-trigger"><i className="material-icons">menu</i></a>
             <ul id="nav-mobile" className="right hide-on-med-and-down">
                 <li><Link to="/">Feed</Link></li>
                 <li><Link to="/people/">People</Link></li>

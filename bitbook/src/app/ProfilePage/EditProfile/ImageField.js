@@ -1,8 +1,8 @@
-import React from 'react'
-import { utils } from '../../../shared/utils'
+import React from 'react';
+
+import { utils } from '../../../shared/utils';
 
 const ImageField = ({ onChangeHandler, imageValue }) => {
-
     const imageIsValid = utils.isImageUrl(imageValue);
 
     const showError = (!imageIsValid && imageValue !== "") ? "isInvalid" : "isValid";

@@ -1,10 +1,11 @@
 import React from 'react';
+
 import { utils } from '../../../shared/utils'
 import { postServices } from '../../../services/postServices'
 
 class NewImagePost extends React.Component {
     constructor(props) {
-        super(props)
+        super(props);
         this.state = {
             imageUrl: "",
             isValidUrl: false,
@@ -13,11 +14,15 @@ class NewImagePost extends React.Component {
     }
 
     onChangeHandler = (e) => {
-        const { value } = e.target
+        const { value } = e.target;
         const isValid = utils.isImageUrl(value);
-        const showError = utils.showInvalidInput(value, isValid)
+        const showError = utils.showInvalidInput(value, isValid);
 
-        this.setState({ imageUrl: value, isValidUrl: isValid, showError: showError })
+        this.setState({
+            imageUrl: value,
+            isValidUrl: isValid,
+            showError: showError
+        });
     }
 
     isValid = () => (!this.state.isValidUrl) ? "disabled" : "";
@@ -25,14 +30,17 @@ class NewImagePost extends React.Component {
 
     createPost = () => {
         const { reload, modalInstance } = this.props;
+        
         postServices.createPostRequest("image", this.state.imageUrl)
             .then(() => {
-                reload()
+                reload();
             })
             .then(() => {
                 modalInstance.close();
-                this.setState({ imageUrl: "" })
-            })
+                this.setState({
+                    imageUrl: ""
+                });
+            });
     }
 
     render() {

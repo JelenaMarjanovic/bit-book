@@ -8,7 +8,7 @@ import { myConst } from '../../shared/constants';
 
 class PeoplePage extends Component {
     constructor() {
-        super()
+        super();
         this.state = {
             usersList: [],
             filteredUsers: [],
@@ -28,11 +28,11 @@ class PeoplePage extends Component {
     }
 
     createUserItems = () => {
-        return this.state.filteredUsers.map((user, i) => <UserItem user={user} key={i} />)
+        return this.state.filteredUsers.map((user, i) => <UserItem user={user} key={i} />);
     }
 
     filterUsers = (valueToSearch) => {
-        const { usersList } = this.state
+        const { usersList } = this.state;
         const matchedUsers = utils.searchUsersByName(usersList, valueToSearch);
 
         this.setState({ filteredUsers: matchedUsers });

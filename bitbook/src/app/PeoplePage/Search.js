@@ -1,17 +1,21 @@
-import React, { Component } from 'react'
-import './Search.css'
+import React, { Component } from 'react';
+
+import './Search.css';
 
 class Search extends Component {
     constructor(props) {
-        super(props)
+        super(props);
         this.state = {
             value: ""
         }
     }
 
     handleChange = (event) => {
-        const { value } = event.target
-        this.setState({ value: value });
+        const { value } = event.target;
+
+        this.setState({
+            value: value
+        });
     }
 
     componentDidUpdate(prevProps, prevState) {
@@ -24,11 +28,12 @@ class Search extends Component {
     }
 
     resetChange = () => {
-        this.setState({ value: "" });
+        this.setState({
+            value: ""
+        });
     }
 
     render() {
-
         return (
             <form>
                 <div className="input-field">

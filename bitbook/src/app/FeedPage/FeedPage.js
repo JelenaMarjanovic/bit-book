@@ -3,14 +3,15 @@ import React, { Component, Fragment } from 'react';
 import { postServices } from '../../services/postServices';
 import { utils } from '../../shared/utils';
 
-import { CreatePost } from './CreatePost/CreatePost'
+import { CreatePost } from './CreatePost/CreatePost';
 import { PostItem } from './PostItem';
 import { FilterPosts } from './FilterPosts';
+
 import { myConst } from '../../shared/constants';
 
 class FeedPage extends Component {
     constructor() {
-        super()
+        super();
         this.state = {
             postItems: [],
             ownerId: "",
@@ -22,17 +23,20 @@ class FeedPage extends Component {
         this.getOwner()
             .then(() => {
                 this.getPost();
-            })
+            });
     }
 
     getPost = () => {
         return postServices.getRequest(myConst.postsUrl)
             .then(response => {
-                const filteredResponse = this.handleFilter(response)
+                const filteredResponse = this.handleFilter(response);
                 this.resetState();
+
                 const data = utils.checkPostTypeAndCreate(filteredResponse);
-                this.setState({ postItems: data })
-            })
+                this.setState({
+                    postItems: data
+                });
+            });
     }
 
     handleFilter = (response) => {
@@ -40,22 +44,23 @@ class FeedPage extends Component {
             return response;
         } else {
             return response.filter((post) => {
-                return (post.type === this.state.postType)
-            })
+                return (post.type === this.state.postType);
+            });
         }
     }
 
     resetState = () => {
         this.setState({
             postType: "all"
-        })
+        });
     }
 
     handleState = (state) => {
         this.setState({
             postType: state
-        })
-        this.getPost()
+        });
+
+        this.getPost();
     }
 
     getOwner = () => {
@@ -63,16 +68,15 @@ class FeedPage extends Component {
             .then(response => {
                 this.setState({
                     ownerId: response.userId
-                })
-            })
+                });
+            });
     }
-
-
 
     render() {
         const postItems = this.state.postItems.map((post, i) => {
-            return <PostItem key={i} postData={post} profileId={this.state.ownerId} reload={this.getPost} />
+            return <PostItem key={i} postData={post} profileId={this.state.ownerId} reload={this.getPost} />;
         })
+        
         return (
             <Fragment>
                 <FilterPosts handleState={this.handleState} />

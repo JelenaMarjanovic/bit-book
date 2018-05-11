@@ -1,14 +1,15 @@
 import React from 'react';
-import { utils } from '../../../shared/utils'
-import { postServices } from '../../../services/postServices'
 
-import { NameField } from './NameField'
-import { DescriptionField } from './DescriptionField'
-import { ImageField } from './ImageField'
+import { utils } from '../../../shared/utils';
+import { postServices } from '../../../services/postServices';
+
+import { NameField } from './NameField';
+import { DescriptionField } from './DescriptionField';
+import { ImageField } from './ImageField';
 
 class EditProfile extends React.Component {
     constructor(props) {
-        super(props)
+        super(props);
         this.state = {
             name: "",
             description: "",
@@ -18,23 +19,28 @@ class EditProfile extends React.Component {
     }
 
     onChangeHandler = ({ field, value }) => {
-        this.setState({ [field]: value }, () => {
-            const { name, description, image } = this.state
+        this.setState({
+            [field]: value
+        }, () => {
+            const { name, description, image } = this.state;
 
-            const isValid = this.isValidForm(name, description, image)
-            this.setState({ isValidForm: isValid })
-        })
+            const isValid = this.isValidForm(name, description, image);
+            this.setState({
+                isValidForm: isValid
+            });
+        });
     }
 
     updateProfile = () => {
-        const { name, description, image } = this.state
+        const { name, description, image } = this.state;
         const data = {
             "name": name,
             "about": description,
             "aboutShort": description,
             "email": "blabla@gmail.com",
             "avatarUrl": image
-        }
+        };
+
         postServices.createPutRequest(data)
             .then(() => {
                 this.props.closeModal();
@@ -43,9 +49,9 @@ class EditProfile extends React.Component {
                 this.props.reload();
             })
             .catch((error) => {
-                console.log(error)
+                console.log(error);
                 this.props.closeModal();
-            })
+            });
     }
 
     isValidForm = (name, desc, image) => {
@@ -55,8 +61,7 @@ class EditProfile extends React.Component {
     isValid = () => (!this.state.isValidForm) ? "disabled" : "";
 
     render() {
-
-        const { description, name, image } = this.state
+        const { description, name, image } = this.state;
 
         return (
             <div id="editProfile" className="modal">

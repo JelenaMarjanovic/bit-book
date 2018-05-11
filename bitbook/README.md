@@ -1,13 +1,58 @@
 <pre>
 /app
   /common
-    Header
+    /Header
+      Header
+        HeaderNav
     Footer
+  /FeedPage
+    /CreatePost
+      CreatePost
+        NewImagePost
+        NewTextPost
+        NewVideoPost
+    /PostPageDetails
+          CommentItem
+        CommentList
+        CreateComment
+      PostPageDetails
+          DeleteItemComp
+    FeedPage
+      FilterPosts
+        ImagePostComp
+      PostItem
+        TextPostComp
+        VideoPostComp
+  /LoginPage
+      LoginCard
+    LoginPage
+      RegisterCard
+  /PeoplePage
+    PeoplePage
+      Search
+      UserItem
+  /ProfilePage
+    /EditProfile
+        DescriptionField
+      EditProfile
+        ImageField
+        NameField
+    ProfilePage
+  App
+  isAuth
+  Main
 /models
+  Comment
+    ImagePost
+  Post
+  Profile
+    TextPost
+  User
+    VideoPost
 /services
+  postServices
 /shared
   constants
   utils
-App
-Main
+index
 </pre>

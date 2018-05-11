@@ -1,13 +1,14 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 
 import { postServices } from '../../services/postServices';
 import { utils } from '../../shared/utils';
-import { EditProfile } from './EditProfile/EditProfile'
-import M from 'materialize-css'
+
+import { EditProfile } from './EditProfile/EditProfile';
 import { myConst } from '../../shared/constants';
 
-class ProfilePage extends Component {
+import M from 'materialize-css';
 
+class ProfilePage extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -25,12 +26,18 @@ class ProfilePage extends Component {
 
         if (currentUrl === '/profile/') {
             this.getProfile(myConst.profileUrl);
-            this.setState({ isOwner: true })
+
+            this.setState({
+                isOwner: true
+            });
         } else {
             const userUrl = this.getUserUrl(currentUrl);
 
             this.getProfile(userUrl);
-            this.setState({ isOwner: false })
+
+            this.setState({
+                isOwner: false
+            });
         }
     }
 
@@ -38,20 +45,23 @@ class ProfilePage extends Component {
         const stringArr = string.split("/");
         const id = stringArr[2];
 
-        return `users/${id}`
+        return `users/${id}`;
     }
 
     getProfile = (url) => {
         postServices.getRequest(url)
             .then(response => {
                 const singleUser = utils.createSingleUser(response);
-                this.setState({ singleUser: singleUser })
-            })
+                this.setState({
+                    singleUser: singleUser
+                });
+            });
     }
 
     openModal = () => {
         const elem = document.querySelector(`#editProfile`);
         const instance = M.Modal.init(elem);
+
         instance.options.preventScrolling = false;
         instance.open();
     }
@@ -59,6 +69,7 @@ class ProfilePage extends Component {
     closeModal = () => {
         const elem = document.querySelector(`#editProfile`);
         const instance = M.Modal.init(elem);
+
         instance.close();
     }
 
@@ -67,12 +78,11 @@ class ProfilePage extends Component {
             return <h1>Loading...</h1>
         }
 
-        const { isOwner } = this.state
-
+        const { isOwner } = this.state;
         const { name, about, avatarUrl, postsCount, commentsCount } = this.state.singleUser;
 
         return (
-            <React.Fragment>
+            <Fragment>
                 <EditProfile closeModal={this.closeModal} reload={this.checkOwnerAndFetch} />
                 <div className="row">
                     <div className="col s8 offset-s2">
@@ -96,7 +106,7 @@ class ProfilePage extends Component {
                         </div>
                     </div>
                 </div>
-            </React.Fragment>
+            </Fragment>
         );
     }
 }

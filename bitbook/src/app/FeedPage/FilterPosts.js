@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
-import M from "materialize-css"
 
+import M from "materialize-css";
 
 class FilterPosts extends Component {
     constructor(props) {
-        super(props)
+        super(props);
         this.state = {
             instance: {},
             filterTitle: "all posts"
@@ -13,6 +13,7 @@ class FilterPosts extends Component {
 
     componentDidMount() {
         const elem = document.querySelector('#filterPosts');
+        
         M.Dropdown.init(elem);
     }
 
@@ -22,10 +23,10 @@ class FilterPosts extends Component {
 
         this.setState({
             filterTitle: filterTitle
-        })
+        });
+
         this.props.handleState(value);
     }
-
 
     render() {
         const { filterTitle } = this.state;

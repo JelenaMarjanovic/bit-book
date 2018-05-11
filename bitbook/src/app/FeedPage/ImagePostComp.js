@@ -1,17 +1,19 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+
 import { DeleteItemComp } from '../FeedPage/DeleteItemComp';
-import M from 'materialize-css'
+
+import M from 'materialize-css';
 
 const ImagePostComp = ({ postData, profileId, reload }) => {
-
     const { id, imageUrl, type, commentsNum, userId } = postData;
     const showDelete = (profileId === userId) ? <DeleteItemComp postId={id} reload={reload} /> : "";
 
     const openPreviewMode = (e) => {
-        e.preventDefault()
-        var elem = document.querySelector(`img[data-instance='${id}']`);
-        var instance = M.Materialbox.init(elem);
+        e.preventDefault();
+
+        const elem = document.querySelector(`img[data-instance='${id}']`);
+        const instance = M.Materialbox.init(elem);
 
         if (instance.$el[0].className.includes("active")) {
             instance.destroy();

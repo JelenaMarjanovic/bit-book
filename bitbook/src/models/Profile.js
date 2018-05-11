@@ -1,4 +1,4 @@
-import { User } from "./User";
+import { User } from './User';
 
 class Profile extends User {
     constructor({ userId, name, email, aboutShort, about, avatarUrl, postsCount, commentsCount }) {

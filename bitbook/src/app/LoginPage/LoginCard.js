@@ -1,12 +1,12 @@
-import React, { Component } from "react"
-import { withRouter } from 'react-router-dom'
-import { utils } from './../../shared/utils'
-import { postServices } from '../../services/postServices'
+import React, { Component } from 'react';
+import { withRouter } from 'react-router-dom';
 
+import { utils } from './../../shared/utils';
+import { postServices } from '../../services/postServices';
 
 class LoginCard extends Component {
     constructor(props) {
-        super(props)
+        super(props);
         this.state = {
             loginName: "",
             loginPass: "",
@@ -17,56 +17,71 @@ class LoginCard extends Component {
     }
 
     handleChange = (e) => {
-        const { value, id } = e.target
-        this.setState({ [id]: value });
-        const funcName = "validate" + id
+        const { value, id } = e.target;
+
+        this.setState({
+            [id]: value
+        });
+
+        const funcName = "validate" + id;
         this[funcName](value);
     }
 
     isValidForm = () => {
         const { isValidName, isValidPass } = this.state;
-        return isValidName && isValidPass
+
+        return isValidName && isValidPass;
     }
 
     validateloginName = (value) => {
-        const valid = utils.isValidName(value)
-        this.setState({ isValidName: valid })
+        const valid = utils.isValidName(value);
+
+        this.setState({
+            isValidName: valid
+        });
     }
 
     validateloginPass = (value) => {
-        const valid = utils.isValidPass(value)
-        this.setState({ isValidPass: valid })
+        const valid = utils.isValidPass(value);
+
+        this.setState({
+            isValidPass: valid
+        });
     }
 
     isValid = () => (!this.isValidForm()) ? "disabled" : "";
+
     showError = (validate, value) => {
-        const error = (!validate && value !== "") ? true : false
-        return (error) ? "isInvalid" : "isValid"
+        const error = (!validate && value !== "") ? true : false;
+
+        return (error) ? "isInvalid" : "isValid";
     };
 
     isIncorrectLogin = () => {
-        return (this.state.failedLogin) ? "isInvalid" : "isValid"
+        return (this.state.failedLogin) ? "isInvalid" : "isValid";
     }
 
     loginRequest = () => {
         const data = {
             "username": this.state.loginName,
             "password": this.state.loginPass
-        }
+        };
 
         postServices.createLoginRequest(data)
             .then(res => {
-                utils.setSessionId(res.data.sessionId)
+                utils.setSessionId(res.data.sessionId);
                 this.props.history.push('/');
             })
             .catch(error => {
-                this.setState({ failedLogin: true })
+                this.setState({
+                    failedLogin: true
+                });
                 console.log(error);
-            })
+            });
     }
 
     render() {
-        const { loginName, loginPass, isValidName, isValidPass } = this.state
+        const { loginName, loginPass, isValidName, isValidPass } = this.state;
 
         return (
             <div id="login" className="col s12">

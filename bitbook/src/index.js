@@ -1,13 +1,14 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { HashRouter, Route } from 'react-router-dom'
+import { HashRouter, Route } from 'react-router-dom';
 
-import { isAuth } from './app/isAuth'
-import registerServiceWorker from './registerServiceWorker';
+import { isAuth } from './app/isAuth';
 
 import './index.css';
-import "materialize-css/dist/css/materialize.min.css";
-import M from "materialize-css"
+import 'materialize-css/dist/css/materialize.min.css';
+import M from 'materialize-css';
+
+import registerServiceWorker from './registerServiceWorker';
 
 M.AutoInit();
 
@@ -16,4 +17,5 @@ ReactDOM.render(
         <Route path="/" component={isAuth()} />
     </HashRouter>,
     document.getElementById('root'));
+    
 registerServiceWorker();

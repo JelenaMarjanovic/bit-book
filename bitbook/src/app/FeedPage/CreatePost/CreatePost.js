@@ -1,14 +1,15 @@
-import React, { Component, Fragment } from 'react'
-import M from "materialize-css"
+import React, { Component, Fragment } from 'react';
 
-import { NewTextPost } from './NewTextPost'
-import { NewVideoPost } from './NewVideoPost'
-import { NewImagePost } from './NewImagePost'
+import M from "materialize-css";
+
+import { NewTextPost } from './NewTextPost';
+import { NewVideoPost } from './NewVideoPost';
+import { NewImagePost } from './NewImagePost';
 
 
 class CreatePost extends Component {
     constructor(props) {
-        super(props)
+        super(props);
         this.state = {
             activeModal: null,
         }
@@ -16,6 +17,7 @@ class CreatePost extends Component {
 
     componentDidMount() {
         const elem = document.querySelector('.fixed-action-btn');
+
         M.FloatingActionButton.init(elem, {
             hoverEnabled: false
         });
@@ -25,13 +27,18 @@ class CreatePost extends Component {
         const ID = e.target.id;
         const elem = document.querySelector(`#modal${ID}`);
         const instance = M.Modal.init(elem);
+
         instance.open();
-        this.setState({ activeModal: instance })
+        
+        this.setState({
+            activeModal: instance
+        });
     }
 
     render() {
-        const { reload } = this.props
-        const { activeModal } = this.state
+        const { reload } = this.props;
+        const { activeModal } = this.state;
+        
         return (
             <Fragment>
                 <NewTextPost reload={reload} modalInstance={activeModal} />

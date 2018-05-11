@@ -8,7 +8,7 @@ class Constants {
     postsUrl = 'Posts';
     usersUrl = "users";
 
-    registerUrl = this.BASE_END_POINT + 'register'
+    registerUrl = this.BASE_END_POINT + 'register';
     loginUrl = this.BASE_END_POINT + 'login';
     textPostUrl = this.BASE_END_POINT + 'TextPosts';
     imagePostUrl = this.BASE_END_POINT + 'ImagePosts';
@@ -17,13 +17,12 @@ class Constants {
     deletePostRequestUrl = this.BASE_END_POINT + 'Posts/';
     putRequestUrl = this.BASE_END_POINT + 'Profiles';
 
-
     loginOptions = {
         headers: {
             "Content-Type": "application/json",
             "Key": "7E47472",
         }
-    }
+    };
 }
 
 export const myConst = new Constants();
