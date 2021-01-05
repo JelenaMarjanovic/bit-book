@@ -4,7 +4,7 @@
   "private": true,
   "homepage": "https://JelenaMarjanovic.github.io/bit-book/",
   "dependencies": {
-    "axios": "^0.18.1",
+    "axios": "^0.21.1",
     "gh-pages": "^1.1.0",
     "materialize-css": "^1.0.0-beta",
     "react": "^16.2.0",
